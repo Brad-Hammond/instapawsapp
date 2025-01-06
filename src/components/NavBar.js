@@ -68,6 +68,28 @@ const NavBar = () => {
       </NavLink>
     </>
   );
-}
+
+  return (
+    <Navbar expand="md" fixed="top" style={{ backgroundColor: "#fff", borderBottom: "1px solid #ddd" }}>
+      <Container>
+        <NavLink to="/" aria-label="Insta Paws home navbar title">
+          <Navbar.Brand>
+            <strong>Insta Paws</strong>
+          </Navbar.Brand>
+        </NavLink>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <NavLink to="/" style={{ marginRight: "1rem" }}>
+              Home
+            </NavLink>
+            {currentUser ? createPostIcon : null}
+            {currentUser ? authIcons : unAuthIcons}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
 
 export default NavBar;
