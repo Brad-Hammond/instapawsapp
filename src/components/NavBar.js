@@ -56,6 +56,18 @@ const NavBar = () => {
           </NavDropdown.Item>
         </NavDropdown>
     ); 
+
+    // Unauthenticated user icons
+  const unAuthIcons = (
+    <>
+      <NavLink to="/dj-rest-auth/login">
+        <span>Log In</span>
+      </NavLink>
+      <NavLink to="/dj-rest-auth/registration">
+        <span>Sign Up</span>
+      </NavLink>
+    </>
+  );
 }
 
 export default NavBar;
