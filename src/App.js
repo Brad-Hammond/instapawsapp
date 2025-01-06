@@ -14,7 +14,16 @@ const Profile = () => <div>Profile Page</div>;
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dj-rest-auth/login" element={<Login />} />
+          <Route path="/dj-rest-auth/registration" element={<SignUp />} />
+          <Route path="/posts/create" element={<CreatePost />} />
+          <Route path="/profiles/:id" element={<Profile />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
