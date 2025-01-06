@@ -28,6 +28,34 @@ const NavBar = () => {
           <span>Create Post</span>
         </NavLink>
       );
+    
+     // Authenticated user icons
+     const authIcons = (
+        <NavDropdown
+          title={
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src="https://via.placeholder.com/40" // Placeholder image for user avatar
+                alt="User Avatar"
+                style={{ height: "40px", borderRadius: "50%", marginRight: "8px" }}
+              />
+              <span>Username</span>
+            </div>
+          }
+          id="nav-dropdown"
+        >
+          <NavDropdown.Item>
+            <NavLink to="/profiles/1">
+              <AiOutlineUser size={25} />
+              My Profile
+            </NavLink>
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogOut}>
+            <AiOutlineLogout size={25} />
+            Log Out
+          </NavDropdown.Item>
+        </NavDropdown>
+    ); 
 }
 
 export default NavBar;
