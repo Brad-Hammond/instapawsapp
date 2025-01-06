@@ -8,7 +8,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 
 const NavBar = () => {
-    return <div>navbar placeholder</div>;
-};
+    const currentUser = null;
+    const setCurrentUser = () => {};
+}
 
 export default NavBar;
