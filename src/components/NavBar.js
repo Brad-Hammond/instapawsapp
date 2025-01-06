@@ -10,6 +10,15 @@ import Nav from "react-bootstrap/Nav";
 const NavBar = () => {
     const currentUser = null;
     const setCurrentUser = () => {};
+
+    const handleLogOut = async () => {
+        try {
+          await axios.post("/dj-rest-auth/logout/");
+          setCurrentUser(null);
+        } catch (err) {
+          console.error("Error logging out:", err);
+        }
+      };
 }
 
 export default NavBar;
