@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from "./components/NavBar";
+import './api/axiosDefault';
 
 function App() {
   return (
