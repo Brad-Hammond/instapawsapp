@@ -10,7 +10,8 @@ import Nav from "react-bootstrap/Nav";
 const NavBar = () => {
     const currentUser = null;
     const setCurrentUser = () => {};
-
+    
+    // logout handler
     const handleLogOut = async () => {
         try {
           await axios.post("/dj-rest-auth/logout/");
@@ -19,6 +20,14 @@ const NavBar = () => {
           console.error("Error logging out:", err);
         }
       };
+
+    // Icon for creating new post
+    const createPostIcon = (
+        <NavLink to="/posts/create">
+          <i className="fa-solid fa-plus"></i>
+          <span>Create Post</span>
+        </NavLink>
+      );
 }
 
 export default NavBar;
