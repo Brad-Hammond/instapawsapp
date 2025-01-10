@@ -1,0 +1,34 @@
+.ToolbarPlacement {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .Icon {
+    color: #344e41;
+    vertical-align: middle;
+    font-size: 25px;
+  }
+  
+  .Icon:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #4c23e8;
+    font-weight: 600;
+  }
+  
+  .HeartIcon {
+    color: rgba(224, 0, 0, 0.842);
+  }
+  
+  .CreatePostIcon {
+    color: rgba(0, 126, 126, 0.781);
+  }
+  
+  .MyFeedIcon {
+    color: rgba(18, 5, 199, 0.767);
+  }
+  
+  .ActivePath a.active {
+    color: #4c23e8;
+  }
+  
