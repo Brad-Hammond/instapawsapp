@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styles from "../../styles/SignupLogIn.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useNavigate } from "react-router-dom";
 
@@ -31,8 +32,8 @@ const LogInForm = () => {
   };
 
   return (
-    <div>
-      <h1>Log In</h1>
+    <div className={styles.Col}>
+      <h1 className={styles.Header}>Log In</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -40,6 +41,7 @@ const LogInForm = () => {
           placeholder="Enter username"
           value={logInData.username}
           onChange={handleChange}
+          className={styles.Input}
         />
         <input
           type="password"
@@ -47,11 +49,15 @@ const LogInForm = () => {
           placeholder="Enter password"
           value={logInData.password}
           onChange={handleChange}
+          className={styles.Input}
         />
-        <button type="submit">Log In</button>
+        <button type="submit" className={styles.LogInSignUpButton}>Log In</button>
       </form>
+
       {errors.non_field_errors && (
-        <div>{errors.non_field_errors.map((msg, idx) => <p key={idx}>{msg}</p>)}</div>
+        <div className={styles.Error}>
+          {errors.non_field_errors.map((msg, idx) => <p key={idx}>{msg}</p>)}
+        </div>
       )}
     </div>
   );
