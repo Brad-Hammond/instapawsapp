@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Toolbar = () => {
+  const { pathname } = useLocation();
   return (
     <div>
-      <Link to="/feed">My Feed</Link>
-      <Link to="/liked">My Hearts</Link>
-      <Link to="/posts/create">Create Post</Link>
+      <Link to="/feed" className={pathname === "/feed" ? "active" : null}>
+        My Feed
+      </Link>
+      <Link to="/liked" className={pathname === "/liked" ? "active" : null}>
+        My Hearts
+      </Link>
+      <Link
+        to="/posts/create"
+        className={pathname === "/posts/create" ? "active" : null}
+      >
+        Create Post
+      </Link>
     </div>
   );
 };
