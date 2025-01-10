@@ -49,3 +49,55 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 }
+
+const profile = profilePage.results[0];
+const is_owner = currentUser?.username === profile?.owner;
+
+const profileDetail = (
+  <>
+    <Row noGutters className="p-3 text-center">
+      <Col lg={4} className="text-lg-left">
+        <Image
+          roundedCircle
+          className={styles.UserAvatar}
+          src={profile?.image}
+          alt="Profile avatar"
+        />
+      </Col>
+      <Col lg={4}>
+        <h3 className="mt-2 mb-4">{profile?.owner}&apos;s profile</h3>
+        <p className={styles.UserSocialNumbers}>
+          Posts <span>{profile?.posts_total}</span>
+        </p>
+        <p className={styles.UserSocialNumbers}>
+          Followers <span>{profile?.followers_total}</span>
+        </p>
+        <p className={styles.UserSocialNumbers}>
+          Following <span>{profile?.following_total}</span>
+        </p>
+      </Col>
+      <Col lg={4} className="text-lg-right">
+        {profile?.is_owner && <ProfileEditDropdownMenu id={profile?.id} />}
+        {currentUser &&
+          !is_owner &&
+          (profile?.following_id ? (
+            <Button
+              className={`${styles.UnfollowButton}`}
+              onClick={() => handleUnfollow(profile)}
+            >
+              unfollow
+            </Button>
+          ) : (
+            <Button
+              className={`${styles.FollowButton}`}
+              onClick={() => handleFollow(profile)}
+            >
+              follow
+            </Button>
+          ))}
+      </Col>
+      {profile?.content && <Col className="p-2">{profile.content}</Col>}
+    </Row>
+  </>
+);
+
