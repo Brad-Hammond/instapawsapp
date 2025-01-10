@@ -40,3 +40,75 @@
     transform: translateY(1px);
     border-color: #7f9f56;
   }
+.FollowButton:focus {
+  background-color: #5a6f39;
+  border-color: #7f9f56;
+}
+
+.UnfollowButton {
+  align-self: center;
+  min-width: 100px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  padding: 7.5px;
+  margin-bottom: 15px;
+  margin-right: 2px;
+  margin-left: 2px;
+  background-color: #D43F47;
+  border-color: #B03B43;
+  border-width: 1px;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: background-color 0.2s ease;
+}
+
+.UnfollowButton:hover {
+  background-color: #F26D6D;
+  border-color: #B03B43;
+  font-weight: 600;
+  color: white;
+  animation: btngentleshake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.UnfollowButton:active:focus {
+  border-color: #9F3232;
+  transition: color, fill ease-in-out 0.3s;
+}
+
+.UnfollowButton:not(:disabled):not(.disabled):active {
+  background-color: #9F3232;
+  transform: translateY(1px);
+  border-color: #9F3232;
+}
+
+.UnfollowButton:focus {
+  background-color: #8C2828;
+  border-color: #9F3232;
+}
+
+@keyframes btngentleshake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateY(-9px);
+  }
+  35% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+  55% {
+    transform: translateY(-9px) rotate(-2deg);
+  }
+  65% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(-9px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
