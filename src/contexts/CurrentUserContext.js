@@ -44,3 +44,7 @@ export const CurrentUserProvider = ({ children }) => {
       return err;
     }
   };
+
+  useEffect(() => {
+  handleMount();
+}, []);
