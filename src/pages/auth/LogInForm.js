@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useNavigate } from "react-router-dom";
 
 const LogInForm = () => {
   const setCurrentUser = useSetCurrentUser();
+  const navigate = useNavigate();
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
@@ -22,7 +24,7 @@ const LogInForm = () => {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
-      console.log("User set:", data.user);
+      navigate("/");
     } catch (err) {
       setErrors(err.response?.data || { non_field_errors: ["Login failed"] });
     }
