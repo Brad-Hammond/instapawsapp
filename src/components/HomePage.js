@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import CSSTransition from "react-transition-group/CSSTransition";
 
 
@@ -22,8 +21,8 @@ const HomePage = () => {
       classNames="fade"
     >
       <Container fluid>
-        <Jumbotron className={`${appStyles.Content} p-5`} fluid>
-          <Container>
+            <Row className={`${appStyles.Content} p-5`} style={{ backgroundColor: "#A3B18A", color: "white" }}>
+          <Col>
             <h1 className={styles.HomeTitle}>Welcome to InstaPaws</h1>
             <p className={`${styles.HomeDescription} lead`}>
               Join our community and share your dog's journey.
@@ -42,8 +41,8 @@ const HomePage = () => {
                 </NavLink>
               </p>
             )}
-          </Container>
-        </Jumbotron>
+          </Col>
+        </Row>
 
         <Container className="my-5">
           <Row className="g-4">
