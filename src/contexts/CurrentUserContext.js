@@ -48,3 +48,30 @@ export const CurrentUserProvider = ({ children }) => {
       </CurrentUserContext.Provider>
     );
   };
+
+  axiosReq.interceptors.request.use(
+    async (config) => {
+      if (shouldRefreshPage(config.data)) {
+        window.location.reload();
+      } else {
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/");
+          } catch (err) {
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                history.push("/login");
+              }
+              return null;
+            });
+            removeTokenTimestamp();
+            return config;
+          }
+        }
+        return config;
+      }
+    },
+    (err) => {
+      return Promise.reject(err);
+    }
+  );
