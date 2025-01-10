@@ -4,6 +4,7 @@ import { MdOutlineLibraryAdd, MdOutlineSportsHandball } from "react-icons/md";
 import { RiHeartsFill } from "react-icons/ri";
 import styles from "../styles/Toolbar.module.css";
 import Container from "react-bootstrap/Container";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 const Toolbar = () => {
   const { pathname } = useLocation();
@@ -24,6 +25,7 @@ const Toolbar = () => {
       >
         <MdOutlineLibraryAdd className={styles.Icon} /> Create Post
       </Link>
+      <ScrollToTopButton />
     </Container>
   );
 };
