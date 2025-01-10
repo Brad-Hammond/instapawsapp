@@ -40,3 +40,16 @@
     cursor: pointer;
   }
   
+  a {
+    color: #344e41;
+  }
+  
+  .Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding: 0.5rem;
+    color: #344e41;
+  }
+  
