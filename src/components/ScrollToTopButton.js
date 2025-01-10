@@ -8,6 +8,13 @@ const ScrollToTopButton = () => {
     setIsVisible(scrollTop > 100);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -16,7 +23,10 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <button style={{ display: isVisible ? "block" : "none" }}>
+    <button
+      style={{ display: isVisible ? "block" : "none" }}
+      onClick={scrollToTop}
+    >
       Scroll to Top
     </button>
   );
