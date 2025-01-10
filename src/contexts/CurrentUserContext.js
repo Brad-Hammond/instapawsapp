@@ -32,3 +32,15 @@ export const CurrentUserProvider = ({ children }) => {
       </CurrentUserContext.Provider>
     );
   };
+
+  const handleMount = async () => {
+    try {
+      if (getCookie("refreshTokenTimestamp") === "") {
+        await axios.post("/dj-rest-auth/logout/");
+      }
+      const { data } = await axiosRes.get("/dj-rest-auth/user/");
+      setCurrentUser(data);
+    } catch (err) {
+      return err;
+    }
+  };
