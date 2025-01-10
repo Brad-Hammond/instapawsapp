@@ -1,0 +1,38 @@
+.Avatar {
+    margin: 0px 8px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .Avatar:hover {
+    animation: gentleshake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  @keyframes gentleshake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateY(-3px);
+    }
+    35% {
+      transform: translateY(-3px) rotate(3deg);
+    }
+    55% {
+      transform: translateY(-3px) rotate(-3deg);
+    }
+    65% {
+      transform: translateY(-3px) rotate(3deg);
+    }
+    75% {
+      transform: translateY(-3px) rotate(-3deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0);
+    }
+  }
+  
