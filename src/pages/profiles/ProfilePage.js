@@ -1,1 +1,51 @@
-    
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { fetchMoreData } from "../../utils/utils";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
+import { axiosReq } from "../../api/axiosDefaults";
+import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfilePage.module.css";
+import CSSTransition from "react-transition-group/CSSTransition";
+import NoResultsFoundImage from "../../assets/no-result-found.jpg";
+import { ProfileEditDropdownMenu } from "../../components/DropdownMenu";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import Asset from "../../components/Asset";
+import PopularProfiles from "./PopularProfiles";
+import Toolbar from "../../components/Toolbar";
+import Post from "../posts/Post";
+
+function ProfilePage() {
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const currentUser = useCurrentUser();
+  const { id } = useParams();
+  const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
+  const { profilePage } = useProfileData();
+  const [profilePosts, setProfilePosts] = useState({ results: [] });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [{ data: profilePage }, { data: profilePosts }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/posts/?owner__profile=${id}`),
+          ]);
+        setProfileData((prevState) => ({
+          ...prevState,
+          profilePage: { results: [profilePage] },
+        }));
+        setProfilePosts(profilePosts);
+        setHasLoaded(true);
+      } catch (err) {
+        return err;
+      }
+    };
+    fetchData();
+  }, [id, setProfileData]);
+}
