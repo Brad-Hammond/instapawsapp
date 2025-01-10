@@ -1,4 +1,5 @@
-
+import jwtDecode from "jwt-decode";
+import { getCookie, removeTokenTimestamp } from "./utils";
 
 export const getCookie = (cname) => {
     let name = cname + "=";
@@ -18,4 +19,14 @@ export const getCookie = (cname) => {
   
   export const removeTokenTimestamp = () => {
     localStorage.removeItem("refreshTokenTimestamp");
+  };
+  
+  export const setTokenTimestamp = (data) => {
+    const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+    localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+  };
+  
+  export const shouldRefreshToken = () => {
+    const token = getCookie("refreshTokenTimestamp");
+    return !token;
   };
