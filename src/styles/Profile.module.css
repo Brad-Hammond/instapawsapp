@@ -1,0 +1,42 @@
+.ContentSplit {
+    word-break: break-word;
+  }
+  
+  .FollowButton {
+    align-self: center;
+    min-width: 100px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 7.5px;
+    margin-bottom: 15px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-color: #A3B18A;
+    border-color: #7f9f56;
+    border-width: 1px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    animation: bounce 0.3s infinite alternate;
+  }
+  
+  .FollowButton:hover {
+    background-color: #7f9f56;
+    border-color: #6f8f47;
+    font-weight: 600;
+    color: #ffffff;
+    animation: btngentleshake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  .FollowButton:active:focus {
+    border-color: #6c7f43;
+    transition: color, fill ease-in-out 0.3s;
+  }
+  
+  .FollowButton:not(:disabled):not(.disabled):active {
+    background-color: #6c7f43;
+    transform: translateY(1px);
+    border-color: #7f9f56;
+  }
