@@ -104,10 +104,10 @@ const NavBar = () => {
       fixed="top"
     >
       <Container>
-        <NavLink to="/" aria-label="thebod home navbar title">
+        <NavLink to="/" aria-label="instapaws home navbar title">
           <Navbar.Brand>
             <span>
-              <strong>thebod</strong>
+              <strong>InstaPaws</strong>
             </span>
           </Navbar.Brand>
         </NavLink>
