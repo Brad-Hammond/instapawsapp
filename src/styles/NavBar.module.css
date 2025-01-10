@@ -5,6 +5,14 @@
     animation-fill-mode: forwards;
   }
   
+  .LogoutIcon {
+    color: #D90429;
+  }
+  
+  .ProfileIcon {
+    color: #344E41;
+  }
+  
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -15,4 +23,5 @@
       transform: translateY(0);
     }
   }
+  
   
