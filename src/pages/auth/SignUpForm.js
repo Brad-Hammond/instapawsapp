@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../styles/SignupLogIn.module.css";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { TbUserPlus } from "react-icons/tb"; 
 import { Container, Row, Col, Form, Button, Alert, Image } from "react-bootstrap";
 import { useCookies } from "react-cookie";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const SignUpForm = () => {
   const setCurrentUser = useSetCurrentUser();
