@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "../styles/ScrollToTopButton.module.css";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,7 +25,7 @@ const ScrollToTopButton = () => {
 
   return (
     <button
-      style={{ display: isVisible ? "block" : "none" }}
+      className={`${styles.Button} ${isVisible ? styles.show : ""}`}
       onClick={scrollToTop}
     >
       Scroll to Top
