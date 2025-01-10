@@ -6,7 +6,7 @@ import React, {
     useState,
   } from "react";
   import { useNavigate } from "react-router-dom";
-  import { axiosReq, axiosRes } from "../api/axiosDefaults";
+  import { axiosReq, axiosRes } from "../api/axiosDefault";
   import axios from "axios";
   import {
     getCookie,
