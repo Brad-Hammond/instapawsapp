@@ -53,3 +53,10 @@
     color: #344e41;
   }
   
+  .LoginImage {
+    object-fit: cover;
+    height: 50%;
+    width: 50%;
+    border: 2px solid #A3B18A;
+  }
+  
