@@ -28,6 +28,10 @@
     color: #344E41;
   }
   
+  .DropdownMenu:active {
+    background-color: #CCD5AE !important;
+  }
+  
   @keyframes fadeIn {
     from {
       opacity: 0;
