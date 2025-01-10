@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { getCookie, removeTokenTimestamp } from "./utils";
+import { axiosReq } from "../api/axiosDefault";
 
 export const getCookie = (cname) => {
     let name = cname + "=";
@@ -29,4 +30,30 @@ export const getCookie = (cname) => {
   export const shouldRefreshToken = () => {
     const token = getCookie("refreshTokenTimestamp");
     return !token;
+  };
+  
+  export const shouldRefreshPage = (data) => {
+    if (data) {
+      const profileIdOfPost = data.profile_id;
+      const profileIdSignedIn = parseInt(getCookie("profile_id"));
+      return profileIdOfPost === profileIdSignedIn;
+    }
+    return false;
+  };
+  
+  export const fetchMoreData = async (resource, setResource) => {
+    try {
+      const { data } = await axiosReq.get(resource.next);
+      setResource((prevResource) => ({
+        ...prevResource,
+        next: data.next,
+        results: data.results.reduce((acc, cur) => {
+          return acc.some((accResult) => accResult.id === cur.id)
+            ? acc
+            : [...acc, cur];
+        }, prevResource.results),
+      }));
+    } catch (err) {
+      console.error(err);
+    }
   };
