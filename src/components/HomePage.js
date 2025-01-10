@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import styles from "../styles/HomePage.module.css";
 import appStyles from "../App.module.css";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -42,6 +44,7 @@ const HomePage = () => {
             )}
           </Container>
         </Jumbotron>
+
         <Container className="my-5">
           <Row className="g-4">
             <Col md={6} lg={4} className={`${appStyles.Content} ${styles.HomePromptOne} ${styles.HomePrompt}`}>
@@ -70,6 +73,25 @@ const HomePage = () => {
             </Col>
           </Row>
         </Container>
+
+        <footer>
+          <div className="text-center">
+            <p className={`${styles.ContactIcons} text-white`}>
+              Created by Placeholder Name
+            </p>
+          </div>
+          <div className="text-center pb-3">
+            <p className={`${styles.ContactIcons} text-white`}>
+              Connect with us:
+            </p>
+            <a href="#" aria-label="Placeholder GitHub link" target="_blank" rel="noopener noreferrer">
+              <i className={`${styles.ContactIcons} ${styles.GithubIcon} fab fa-github`} />
+            </a>
+            <a href="#" aria-label="Placeholder LinkedIn link" target="_blank" rel="noopener noreferrer">
+              <i className={`${styles.ContactIcons} ${styles.LinkedinIcon} fab fa-linkedin`} />
+            </a>
+          </div>
+        </footer>
       </Container>
     </CSSTransition>
   );
