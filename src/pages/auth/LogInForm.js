@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const LogInForm = () => {
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setLogInData({
@@ -13,10 +15,20 @@ const LogInForm = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", logInData);
+      console.log("Login successful:", data);
+    } catch (err) {
+      setErrors(err.response?.data || { non_field_errors: ["Login failed"] });
+    }
+  };
+
   return (
     <div>
       <h1>Log In</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
@@ -33,6 +45,9 @@ const LogInForm = () => {
         />
         <button type="submit">Log In</button>
       </form>
+      {errors.non_field_errors && (
+        <div>{errors.non_field_errors.map((msg, idx) => <p key={idx}>{msg}</p>)}</div>
+      )}
     </div>
   );
 };
