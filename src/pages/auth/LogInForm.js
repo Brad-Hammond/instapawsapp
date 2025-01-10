@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const LogInForm = () => {
+  const setCurrentUser = useSetCurrentUser();
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
@@ -19,7 +21,8 @@ const LogInForm = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
-      console.log("Login successful:", data);
+      setCurrentUser(data.user);
+      console.log("User set:", data.user);
     } catch (err) {
       setErrors(err.response?.data || { non_field_errors: ["Login failed"] });
     }
