@@ -5,8 +5,8 @@ import React, {
     useMemo,
     useState,
   } from "react";
-  import { useHistory } from "react-router-dom";
-  import { axiosReq, axiosRes } from "../api/axiosDefault";
+  import { useNavigate } from "react-router-dom";
+  import { axiosReq, axiosRes } from "../api/axiosDefaults";
   import axios from "axios";
   import {
     getCookie,
@@ -14,16 +14,16 @@ import React, {
     shouldRefreshPage,
     shouldRefreshToken,
   } from "../utils/utils";
-
-export const CurrentUserContext = createContext();
-export const SetCurrentUserContext = createContext();
   
-export const useCurrentUser = () => useContext(CurrentUserContext);
-export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
+  export const CurrentUserContext = createContext();
+  export const SetCurrentUserContext = createContext();
   
-export const CurrentUserProvider = ({ children }) => {
+  export const useCurrentUser = () => useContext(CurrentUserContext);
+  export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
+  
+  export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const history = useHistory();
+    const navigate = useNavigate();
   
     const handleMount = async () => {
       try {
@@ -33,7 +33,7 @@ export const CurrentUserProvider = ({ children }) => {
         const { data } = await axiosRes.get("/dj-rest-auth/user/");
         setCurrentUser(data);
       } catch (err) {
-        return err;
+        console.error(err);
       }
     };
   
@@ -53,7 +53,7 @@ export const CurrentUserProvider = ({ children }) => {
               } catch (err) {
                 setCurrentUser((prevCurrentUser) => {
                   if (prevCurrentUser) {
-                    history.push("/login");
+                    navigate("/login");
                   }
                   return null;
                 });
@@ -76,7 +76,7 @@ export const CurrentUserProvider = ({ children }) => {
             } catch (err) {
               setCurrentUser((prevCurrentUser) => {
                 if (prevCurrentUser) {
-                  history.push("/login");
+                  navigate("/login");
                 }
                 return null;
               });
@@ -87,7 +87,7 @@ export const CurrentUserProvider = ({ children }) => {
           return Promise.reject(err);
         }
       );
-    }, [history]);
+    }, [navigate]);
   
     return (
       <CurrentUserContext.Provider value={currentUser}>
@@ -97,3 +97,4 @@ export const CurrentUserProvider = ({ children }) => {
       </CurrentUserContext.Provider>
     );
   };
+  
