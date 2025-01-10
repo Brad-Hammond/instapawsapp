@@ -27,8 +27,11 @@ const ScrollToTopButton = () => {
     <button
       className={`${styles.Button} ${isVisible ? styles.show : ""}`}
       onClick={scrollToTop}
+      aria-label="Scrolltotopbutton"
     >
-      Scroll to Top
+      <span>
+        <i className="fa-solid fa-circle-arrow-up"></i>
+      </span>
     </button>
   );
 };
