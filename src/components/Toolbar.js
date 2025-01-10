@@ -3,11 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { MdOutlineLibraryAdd, MdOutlineSportsHandball } from "react-icons/md";
 import { RiHeartsFill } from "react-icons/ri";
 import styles from "../styles/Toolbar.module.css";
+import Container from "react-bootstrap/Container";
 
 const Toolbar = () => {
   const { pathname } = useLocation();
   return (
-    <div className={styles.Toolbar}>
+    <Container className={styles.Toolbar}>
       <Link to="/feed" className={pathname === "/feed" ? styles.active : null}>
         <MdOutlineSportsHandball className={styles.Icon} /> My Feed
       </Link>
@@ -23,7 +24,7 @@ const Toolbar = () => {
       >
         <MdOutlineLibraryAdd className={styles.Icon} /> Create Post
       </Link>
-    </div>
+    </Container>
   );
 };
 
