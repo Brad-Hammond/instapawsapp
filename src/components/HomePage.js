@@ -42,6 +42,34 @@ const HomePage = () => {
             )}
           </Container>
         </Jumbotron>
+        <Container className="my-5">
+          <Row className="g-4">
+            <Col md={6} lg={4} className={`${appStyles.Content} ${styles.HomePromptOne} ${styles.HomePrompt}`}>
+              <div className="p-4">
+                <h2 className="text-center">Lorem ispum</h2>
+                <p className="mt-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </Col>
+            <Col md={6} lg={4}>
+              <div className={`${appStyles.Content} ${styles.HomePrompt}`}>
+                <h2 className="text-center">Lorem ispum</h2>
+                <p className="m-3 mt-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </Col>
+            <Col md={6} lg={4} className={`${appStyles.Content} ${styles.HomePromptThree} ${styles.HomePrompt}`}>
+              <div className="p-4">
+                <h2 className="text-center">Lorem ispum</h2>
+                <p className="mt-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </Container>
     </CSSTransition>
   );
