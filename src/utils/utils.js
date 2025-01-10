@@ -1,5 +1,4 @@
 import jwtDecode from "jwt-decode";
-import { getCookie, removeTokenTimestamp } from "./utils";
 import { axiosReq } from "../api/axiosDefault";
 
 export const getCookie = (cname) => {
@@ -56,4 +55,28 @@ export const getCookie = (cname) => {
     } catch (err) {
       console.error(err);
     }
+  };
+  
+  export const unfollowHelper = (profile, clickedProfile) => {
+    return profile.id === clickedProfile.id
+      ? {
+          ...profile,
+          followers_total: profile.followers_total - 1,
+          following_id: null,
+        }
+      : profile.is_owner
+      ? { ...profile, following_total: profile.following_total - 1 }
+      : profile;
+  };
+  
+  export const followHelper = (profile, clickedProfile, following_id) => {
+    return profile.id === clickedProfile.id
+      ? {
+          ...profile,
+          followers_total: profile.followers_total + 1,
+          following_id,
+        }
+      : profile.is_owner
+      ? { ...profile, following_total: profile.following_total + 1 }
+      : profile;
   };
