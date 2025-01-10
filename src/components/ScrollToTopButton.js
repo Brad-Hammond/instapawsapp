@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ScrollToTopButton = () => {
-  return <button>Scroll to Top</button>;
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    <button style={{ display: isVisible ? "block" : "none" }}>
+      Scroll to Top
+    </button>
+  );
 };
 
 export default ScrollToTopButton;
