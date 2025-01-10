@@ -26,3 +26,17 @@
     border-radius: 20px;
   }
   
+  .LogInSignUpButton {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding: 0.5rem;
+    background-color: #A3B18A;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
