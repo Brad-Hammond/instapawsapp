@@ -6,6 +6,7 @@ const useClickOutsideToggle = () => {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
+      if (e.target?.classList.contains("expanded")) return;
       if (ref.current && !ref.current.contains(e.target)) {
         setExpanded(false);
       }
