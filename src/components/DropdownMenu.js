@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/DropdownMenu.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { TbGridDots } from "react-icons/tb";
@@ -55,8 +55,10 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => {
   );
 };
 
+
 export function ProfileEditDropdownMenu({ id }) {
-  const history = useHistory();
+  const navigate = useNavigate();
+
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={DropdownSelect} />
@@ -70,7 +72,7 @@ export function ProfileEditDropdownMenu({ id }) {
           overlay={<Tooltip>Edit your profile</Tooltip>}
         >
           <Dropdown.Item
-            onClick={() => history.push(`/profiles/${id}/edit`)}
+            onClick={() => navigate(`/profiles/${id}/edit`)} 
             aria-label="edit profile"
             className={styles.DropdownItem}
           >
@@ -83,7 +85,7 @@ export function ProfileEditDropdownMenu({ id }) {
           overlay={<Tooltip>Change your password</Tooltip>}
         >
           <Dropdown.Item
-            onClick={() => history.push(`/profiles/${id}/edit/password`)}
+            onClick={() => navigate(`/profiles/${id}/edit/password`)}
             aria-label="change password"
             className={styles.DropdownItem}
           >
