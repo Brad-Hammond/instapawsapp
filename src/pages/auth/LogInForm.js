@@ -107,7 +107,7 @@ const LogInForm = () => {
         </Container>
         <Col className="text-center">
           <Image
-            alt="Cartoon Fitness blog login image"
+            alt="Dog on a leash image."
             className={`${styles.LoginImage}`}
             src={
               "https://res.cloudinary.com/dpdhjt0cf/image/upload/v1736519045/New-Main-1254140_yaomfl.jpg"
