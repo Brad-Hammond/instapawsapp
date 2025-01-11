@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import Avatar from "../../components/Avatar";
 import { DropdownMenu } from "../../components/DropdownMenu";
 import Badge from "react-bootstrap/Badge";
 import { RiHeartsFill, RiHeartsLine, RiChat3Line } from "react-icons/ri";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { axiosReq } from "../../api/axiosDefault";
 import CSSTransition from "react-transition-group/CSSTransition";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
+import styles from "../../styles/Post.module.css";
+import tagsStyles from "../../styles/GeneralPostsPage.module.css";
 
 const Post = ({
   id,
@@ -23,8 +28,11 @@ const Post = ({
   like_id,
   comments_total,
   tags,
+  updated_at,
   setPosts,
 }) => {
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const [showPostMsg, setShowPostMsg] = useState(false);
 
@@ -76,48 +84,84 @@ const Post = ({
 
   return (
     <CSSTransition in appear timeout={300} classNames="fade">
-      <Card>
+      <Card className={styles.Post}>
         {showPostMsg && (
           <UserFeedbackCue
-            variant="info"
-            message="This post is being deleted..."
+            variant="Info"
+            message="This post is being deleted...!"
           />
         )}
         <Card.Body>
-          <Media>
+          <Media className={styles.Container}>
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_image} height={55} />
               {owner}
             </Link>
-            {postPage && (
-              <DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />
-            )}
+            <div className={styles.AvatarPos}>
+              <span className={`${styles.UpdatedAt} ${styles.GentleShake}`}>
+                {updated_at}
+              </span>
+              {is_owner && postPage && (
+                <div className={styles.EditBtn}>
+                  <DropdownMenu
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                  />
+                </div>
+              )}
+            </div>
           </Media>
         </Card.Body>
         <Link to={`/posts/${id}/`}>
           <Card.Img src={image} alt={title} />
         </Link>
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
+          <Card.Title className="text-center">{title}</Card.Title>
           <Card.Text>{content}</Card.Text>
           {tags && (
             <Card.Text>
-              <Badge>{tags}</Badge>
+              <Badge variant="primary" className={tagsStyles.Tags}>
+                <span>{tags}</span>
+              </Badge>
             </Card.Text>
           )}
           <div>
-            {like_id ? (
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can&apos;t heart this!</Tooltip>}
+              >
+                <i className={styles.Icon}>
+                  <RiHeartsLine />
+                </i>
+              </OverlayTrigger>
+            ) : like_id ? (
               <span onClick={handleUnlike}>
-                <RiHeartsFill />
+                <i className={styles.LikedIcon}>
+                  <RiHeartsFill />
+                </i>
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className={styles.Icon}>
+                  <RiHeartsLine />
+                </i>
               </span>
             ) : (
-              <span onClick={handleLike}>
-                <RiHeartsLine />
-              </span>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to heart this post!</Tooltip>}
+              >
+                <i className={styles.Icon}>
+                  <RiHeartsLine />
+                </i>
+              </OverlayTrigger>
             )}
             {likes_total}
             <Link to={`/posts/${id}/`}>
-              <RiChat3Line />
+              <i className={styles.Icon}>
+                <RiChat3Line />
+              </i>
             </Link>
             {comments_total}
           </div>
