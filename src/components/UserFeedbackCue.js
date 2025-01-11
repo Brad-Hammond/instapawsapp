@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "../styles/UserFeedbackCue.module.css";
+import PropTypes from "prop-types";
 
 export default function UserFeedbackCue({ variant, message }) {
   const [isShown, setIsShown] = useState(true);
