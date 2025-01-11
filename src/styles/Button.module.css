@@ -1,0 +1,71 @@
+.Button {
+    align-self: center;
+    min-width: 100px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 7.5px;
+    margin: 2px;
+    background-color: #588157;
+    border: 1px solid #3A5A40;
+    color: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .Button:hover {
+    background-color: #3A5A40;
+    border-color: #344E41;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .Button:active:not(:disabled),
+  .Button:focus:not(:disabled) {
+    background-color: #3A5A40;
+    border-color: #344E41;
+    transform: translateY(1px);
+    outline: none;
+  }
+  
+  .Button:focus {
+    box-shadow: none !important;
+  }
+  
+  .CancelButton {
+    align-self: center;
+    min-width: 100px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 7.5px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-color: #A3B18A;
+    border-color: #344E41;
+    border-width: 1px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  
+  .CancelButton:hover {
+    background-color: #344E41;
+    border-color: #3A5A40;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .CancelButton:active:focus {
+    border-color: #3A5A40;
+    transition: color, fill ease-in-out 0.3s;
+  }
+  
+  .CancelButton:not(:disabled):not(.disabled):active {
+    background-color: #3A5A40;
+    transform: translateY(1px);
+    border-color: #3A5A40;
+  }
+  
+  .CancelButton:focus {
+    background-color: #3A5A40;
+    border-color: #3A5A40;
+  }
+  
