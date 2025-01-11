@@ -69,4 +69,78 @@ function PostCreateForm() {
       }
     }
   };
+
+  const textFields = (
+    <div className="text-center">
+      <Form.Group>
+        <Form.Label>Give your post a title!</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          className={`${formStyles.Form} ${inputStyles.Input}`}
+          value={title}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors.title?.map((message, idx) => (
+        <Alert variant="warning" className={styles.AlertStyles} key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Choose a Tag</Form.Label>
+        {errors.tags?.map((message, idx) => (
+          <Alert variant="warning" className={styles.AlertStyles} key={idx}>
+            {message}
+          </Alert>
+        ))}
+        <Form.Control
+          as="select"
+          name="tags"
+          className={`${formStyles.Form}`}
+          value={tags}
+          onChange={handleChange}
+        >
+          <option>Select your tag!</option>
+          <option value="Puppies">Puppies</option>
+          <option value="Training">Training</option>
+          <option value="Health">Health</option>
+          <option value="Grooming">Grooming</option>
+          <option value="Adoption">Adoption</option>
+          <option value="Nutrition">Nutrition</option>
+          <option value="Toys">Toys</option>
+          <option value="Walks">Walks</option>
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Describe your post!</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          name="content"
+          className={`${formStyles.Form} ${inputStyles.Input}`}
+          value={content}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors.content?.map((message, idx) => (
+        <Alert variant="warning" className={styles.AlertStyles} key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Button className={btnStyles.Button} type="submit">
+        Create Post
+      </Button>
+
+      <Button
+        className={`${btnStyles.CancelButton} mx-3`}
+        onClick={() => history.goBack()}
+      >
+        Cancel Post
+      </Button>
+    </div>
+  );
 }
