@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Container, Form } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { axiosReq } from "../../api/axiosDefault";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { fetchMoreData } from "../../utils/utils";
+import Asset from "../../components/Asset";
+import Post from "./Post";
 
-function GeneralPostsPage({ message, filter = "" }) {
+function GeneralPostsPage() {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
-  const { pathname } = useLocation();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(`/posts/?search=${query}`);
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
@@ -26,19 +26,43 @@ function GeneralPostsPage({ message, filter = "" }) {
     const fetchTimer = setTimeout(() => {
       fetchPosts();
     }, 800);
+
     return () => clearTimeout(fetchTimer);
-  }, [filter, query, pathname]);
+  }, [query]);
 
   return (
     <Container>
-      <Row>
-        <Col lg={3}></Col>
-        <Col lg={6}>
-          <h1>General Posts</h1>
-          <p>Search and view posts here.</p>
-        </Col>
-        <Col lg={3}></Col>
-      </Row>
+      <Form onSubmit={(e) => e.preventDefault()}>
+        <Form.Control
+          type="text"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </Form>
+      {hasLoaded ? (
+        <InfiniteScroll
+          dataLength={posts.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!posts.next}
+          next={() => fetchMoreData(posts, setPosts)}
+        >
+          {posts.results.map((post) => (
+            <Post
+              key={post.id}
+              content={
+                post.content.length > 200
+                  ? post.content.slice(0, 200) + "..."
+                  : post.content
+              }
+              {...post}
+              setPosts={setPosts}
+            />
+          ))}
+        </InfiniteScroll>
+      ) : (
+        <Asset spinner />
+      )}
     </Container>
   );
 }
