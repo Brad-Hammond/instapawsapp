@@ -60,6 +60,75 @@ const ProfileEditForm = () => {
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("content", content);
+
+    if (imageFile?.current?.files[0]) {
+      formData.append("image", imageFile?.current?.files[0]);
+    }
+
+    try {
+      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        profile_image: data.image,
+      }));
+      setProfileMsg(true);
+      setTimeout(() => {
+        history.goBack();
+      }, 2000);
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
+
+  const textFields = (
+    <>
+      <Form.Group>
+        {showProfileMsg && (
+          <UserFeedbackCue
+            message="Profile updated! Taking you back!"
+            variant="Info"
+          />
+        )}
+        <Form.Label className="font-weight-bold">My Profile bio:</Form.Label>
+        <Form.Control
+          as="textarea"
+          value={content}
+          onChange={handleChange}
+          name="content"
+          rows={7}
+          className={inputStyles.Input}
+        />
+      </Form.Group>
+
+      {errors?.description?.map((message, idx) => (
+        <Alert variant="warning" className={alertStyles.AlertStyles} key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Button
+        className={`my-3 ${btnStyles.Button}`}
+        onMouseDown={(e) => e.preventDefault()}
+        type="save"
+      >
+        Save Changes
+      </Button>
+
+      <Button
+        className={`mx-3 ${btnStyles.CancelButton}`}
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => history.goBack()}
+      >
+        Cancel Changes
+      </Button>
+    </>
+  );
+
   return <div>ProfileEditForm</div>;
 };
 
