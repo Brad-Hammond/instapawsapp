@@ -222,3 +222,5 @@ function PostEditForm() {
     </CSSTransition>
   );
 }
+
+export default PostEditForm;
