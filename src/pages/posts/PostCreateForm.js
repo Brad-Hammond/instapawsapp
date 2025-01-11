@@ -220,3 +220,5 @@ function PostCreateForm() {
     </CSSTransition>
   );
 }
+
+export default PostCreateForm;
