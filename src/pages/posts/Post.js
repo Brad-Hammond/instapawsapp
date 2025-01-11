@@ -7,6 +7,8 @@ import { DropdownMenu } from "../../components/DropdownMenu";
 import Badge from "react-bootstrap/Badge";
 import { RiHeartsFill, RiHeartsLine, RiChat3Line } from "react-icons/ri";
 import { axiosReq } from "../../api/axiosDefault";
+import CSSTransition from "react-transition-group/CSSTransition";
+import UserFeedbackCue from "../../components/UserFeedbackCue";
 
 const Post = ({
   id,
@@ -24,6 +26,7 @@ const Post = ({
   setPosts,
 }) => {
   const history = useHistory();
+  const [showPostMsg, setShowPostMsg] = useState(false);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit/`);
@@ -32,7 +35,8 @@ const Post = ({
   const handleDelete = async () => {
     try {
       await axios.delete(`/posts/${id}/`);
-      history.push("/");
+      setShowPostMsg(true);
+      setTimeout(() => history.push("/"), 2000);
     } catch (err) {
       console.error(err);
     }
@@ -71,47 +75,55 @@ const Post = ({
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <Media>
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
-            {owner}
-          </Link>
-          {postPage && (
-            <DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />
-          )}
-        </Media>
-      </Card.Body>
-      <Link to={`/posts/${id}/`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{content}</Card.Text>
-        {tags && (
-          <Card.Text>
-            <Badge>{tags}</Badge>
-          </Card.Text>
+    <CSSTransition in appear timeout={300} classNames="fade">
+      <Card>
+        {showPostMsg && (
+          <UserFeedbackCue
+            variant="info"
+            message="This post is being deleted..."
+          />
         )}
-        <div>
-          {like_id ? (
-            <span onClick={handleUnlike}>
-              <RiHeartsFill />
-            </span>
-          ) : (
-            <span onClick={handleLike}>
-              <RiHeartsLine />
-            </span>
+        <Card.Body>
+          <Media>
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_image} height={55} />
+              {owner}
+            </Link>
+            {postPage && (
+              <DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />
+            )}
+          </Media>
+        </Card.Body>
+        <Link to={`/posts/${id}/`}>
+          <Card.Img src={image} alt={title} />
+        </Link>
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>{content}</Card.Text>
+          {tags && (
+            <Card.Text>
+              <Badge>{tags}</Badge>
+            </Card.Text>
           )}
-          {likes_total}
-          <Link to={`/posts/${id}/`}>
-            <RiChat3Line />
-          </Link>
-          {comments_total}
-        </div>
-      </Card.Body>
-    </Card>
+          <div>
+            {like_id ? (
+              <span onClick={handleUnlike}>
+                <RiHeartsFill />
+              </span>
+            ) : (
+              <span onClick={handleLike}>
+                <RiHeartsLine />
+              </span>
+            )}
+            {likes_total}
+            <Link to={`/posts/${id}/`}>
+              <RiChat3Line />
+            </Link>
+            {comments_total}
+          </div>
+        </Card.Body>
+      </Card>
+    </CSSTransition>
   );
 };
 
