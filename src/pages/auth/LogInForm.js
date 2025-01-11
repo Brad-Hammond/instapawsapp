@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import styles from "../../styles/SignupLogIn.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import { useNavigate, Link } from "react-router-dom";
+import styles from "../../styles/SignupLogIn.module.css";
+import btnStyles from "../../styles/HomePage.module.css";
+import CSSTransition from "react-transition-group/CSSTransition";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Container, Row, Col, Form, Button, Alert, Image } from "react-bootstrap";
-import { useCookies } from "react-cookie";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
+import useCookies from "react-cookie/cjs/useCookies";
 import { jwtDecode } from "jwt-decode";
 
 const LogInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  const navigate = useNavigate();
+
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
   });
-  const [errors, setErrors] = useState({});
+
+  const { username, password } = logInData;
   const [, setCookie] = useCookies(["refreshTokenTimestamp"]);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setLogInData({
@@ -25,6 +35,7 @@ const LogInForm = () => {
     });
   };
 
+  const history = useHistory();
   const setAuthToken = (data) => {
     const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
     setCookie("refreshTokenTimestamp", refreshTokenTimestamp);
@@ -37,85 +48,106 @@ const LogInForm = () => {
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
       setAuthToken(data);
-      navigate("/");
+
+      history.push("/");
     } catch (err) {
-      setErrors(err.response?.data || { non_field_errors: ["Login failed"] });
+      if (err.response) {
+        setErrors(err.response?.data);
+      } else {
+        setErrors({ non_field_errors: [String(err)] });
+      }
+      return err;
     }
+    return false;
   };
 
   return (
-    <Row className={styles.Row}>
-      <Col className={styles.Col}>
-        <Container>
-          <h1 className={styles.Header}>
-            Log In <RiLockPasswordLine />
-          </h1>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="username">
-              <Form.Label className="d-none">Username</Form.Label>
-              <Form.Control
-                onChange={handleChange}
-                className={styles.Input}
-                type="text"
-                placeholder="Enter username"
-                name="username"
-                value={logInData.username}
-              />
-            </Form.Group>
-            {errors.username?.map((message, idx) => (
-              <Alert variant="danger" className={styles.AlertStyles} key={idx}>
-                {message}
-              </Alert>
-            ))}
-            <Form.Group controlId="password">
-              <Form.Label className="d-none">Password</Form.Label>
-              <Form.Control
-                onChange={handleChange}
-                className={styles.Input}
-                type="password"
-                placeholder="Enter password"
-                name="password"
-                value={logInData.password}
-              />
-            </Form.Group>
-            {errors.password?.map((message, idx) => (
-              <Alert variant="danger" className={styles.AlertStyles} key={idx}>
-                {message}
-              </Alert>
-            ))}
-            <Button
-              className={`${styles.LogInSignUpButton}`}
-              type="submit"
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={{ enter: 300 }}
+      classNames="fade"
+    >
+      <Row className={styles.Row}>
+        <Col className={styles.Col}>
+          <Container>
+            <h1 className={styles.Header}>
+              Log In <RiLockPasswordLine />
+            </h1>
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="username">
+                <Form.Label className="d-none">Username</Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  className={styles.Input}
+                  type="text"
+                  placeholder="enter username"
+                  name="username"
+                  value={username}
+                />
+              </Form.Group>
+              {errors.username?.map((message, idx) => (
+                <Alert
+                  variant="danger"
+                  className={styles.AlertStyles}
+                  key={idx}
+                >
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group controlId="password">
+                <Form.Label className="d-none">Password </Form.Label>
+                <Form.Control
+                  onChange={handleChange}
+                  className={styles.Input}
+                  type="password"
+                  placeholder="enter password"
+                  name="password"
+                  value={password}
+                />
+              </Form.Group>
+              {errors.password?.map((message, idx) => (
+                <Alert
+                  variant="danger"
+                  className={styles.AlertStyles}
+                  key={idx}
+                >
+                  {message}
+                </Alert>
+              ))}
+              <Button
+                className={` ${btnStyles.HomeButton} ${styles.LogInSignUpButton}`}
+                type="submit"
+              >
+                Log In!
+              </Button>
+            </Form>
+          </Container>
+          <Container className="mb-5">
+            <Link
+              className={`${styles.Link} mt-4 font-weight-bold`}
+              to="/signup"
             >
-              Log In
-            </Button>
-          </Form>
-        </Container>
-
-        <Container className="mb-5">
-          <Link
-            className={`${styles.Link} mt-4 font-weight-bold`}
-            to="/signup"
-          >
-            Don't have an account? Click here to sign up!
-          </Link>
-          {errors.non_field_errors?.map((message, idx) => (
-            <Alert variant="danger" className={styles.AlertStyles} key={idx}>
-              {message}
-            </Alert>
-          ))}
-        </Container>
-        <Col className="text-center">
-          <Image
-            alt="Dog on a leash image."
-            className={`${styles.LoginImage}`}
-            src={
-              "https://res.cloudinary.com/dpdhjt0cf/image/upload/v1736519045/New-Main-1254140_yaomfl.jpg"
-            }
-          />
+              Don&apos;t have an account? Click here to sign up!
+            </Link>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="danger" className={styles.AlertStyles} key={idx}>
+                {message}
+              </Alert>
+            ))}
+          </Container>
+          <Col className="text-center">
+            <Image
+              alt="Cartoon Fitness blog login image"
+              className={`${styles.LoginImage}`}
+              src={
+                "https://res.cloudinary.com/drhfh23tl/image/upload/v1679416297/login-img_hqathg.png"
+              }
+            />
+          </Col>
         </Col>
-      </Col>
-    </Row>
+      </Row>
+    </CSSTransition>
   );
 };
 
