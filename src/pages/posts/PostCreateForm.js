@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
-import Upload from "../../assets/upload-img.png";
+import Upload from "../../assets/noImageFound.avif";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import inputStyles from "../../styles/SignupLogIn.module.css";
@@ -32,7 +32,7 @@ function PostCreateForm() {
 
   const { title, tags, content, image } = postData;
   const imageInput = useRef(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setPostData({
@@ -58,11 +58,14 @@ function PostCreateForm() {
     formData.append("title", title);
     formData.append("tags", tags);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      history.push(`/posts/${data.id}`);
+      navigate(`/posts/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -137,7 +140,7 @@ function PostCreateForm() {
 
       <Button
         className={`${btnStyles.CancelButton} mx-3`}
-        onClick={() => history.goBack()}
+        onClick={() => navigate(-1)}
       >
         Cancel Post
       </Button>
@@ -194,8 +197,9 @@ function PostCreateForm() {
                     />
                   </Form.Label>
                 )}
-                <Form.File
+                <Form.Control
                   id="image-upload"
+                  type="file"
                   accept="image/*"
                   onChange={handleChangeImage}
                   ref={imageInput}
