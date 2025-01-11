@@ -63,4 +63,26 @@ function PostEditForm() {
       });
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("tags", tags);
+    formData.append("content", content);
+
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
+    try {
+      await axiosReq.put(`/posts/${id}/`, formData);
+      history.push(`/posts/${id}/`);
+    } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
 }
