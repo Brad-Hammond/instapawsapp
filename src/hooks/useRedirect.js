@@ -1,24 +1,24 @@
 import { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
 export const useRedirect = (userAuthStatus) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleMount = async () => {
       try {
         await axios.post("/dj-rest-auth/token/refresh/");
         if (userAuthStatus === "loggedIn") {
-          history.push("/");
+          navigate.push("/");
         }
       } catch (err) {
         if (userAuthStatus === "loggedOut") {
-          history.push("/");
+          navigate.push("/");
         }
       }
     };
 
     handleMount();
-  }, [history, userAuthStatus]);
+  }, [navigate, userAuthStatus]);
 };
