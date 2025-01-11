@@ -1,0 +1,117 @@
+.CommentEntryForm {
+    color: #588157;
+    border-color: #588157;
+    padding-left: 15px;
+    border-radius: 20px !important;
+  }
+  
+  .CommentEntryForm:focus {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border: 1px #588157;
+    color: #588157;
+    border-color: #588157;
+    border-radius: 20px;
+  }
+  
+  .CommentButton {
+    align-self: center;
+    min-width: 100px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 7.5px;
+    margin-bottom: 15px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-color: #3A5A40;
+    border-color: #A3B18A;
+    border-width: 1px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  
+  .CommentButton:hover {
+    background-color: #A3B18A;
+    border-color: #588157;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .CommentButton:active:focus {
+    border-color: #A3B18A;
+    transition: color, fill ease-in-out 0.3s;
+  }
+  
+  .CommentButton:not(:disabled):not(.disabled):active {
+    background-color: #A3B18A;
+    transform: translateY(1px);
+    border-color: #A3B18A;
+  }
+  
+  .CommentButton:focus {
+    background-color: #A3B18A;
+    border-color: #A3B18A;
+  }
+  
+  .CancelCommentEditButton {
+    align-self: center;
+    min-width: 100px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    padding: 7.5px;
+    margin-bottom: 15px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-color: #B62C1A;
+    border-color: #B62C1A;
+    border-width: 1px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  
+  .CancelCommentEditButton:hover {
+    background-color: #882012;
+    border-color: #882012;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .CancelCommentEditButton:active:focus {
+    border-color: #882012;
+    transition: color, fill ease-in-out 0.3s;
+  }
+  
+  .CancelCommentEditButton:not(:disabled):not(.disabled):active {
+    background-color: #882012;
+    transform: translateY(1px);
+    border-color: #882012;
+  }
+  
+  .CancelCommentEditButton:focus {
+    background-color: #882012;
+    border-color: #882012;
+  }
+  
+  @keyframes btngentleshake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateY(-9px);
+    }
+    35% {
+      transform: translateY(-9px) rotate(2deg);
+    }
+    55% {
+      transform: translateY(-9px) rotate(-2deg);
+    }
+    65% {
+      transform: translateY(-9px) rotate(2deg);
+    }
+    75% {
+      transform: translateY(-9px) rotate(-2deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0);
+    }
+  }
+  
