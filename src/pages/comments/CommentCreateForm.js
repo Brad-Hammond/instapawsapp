@@ -39,4 +39,30 @@ function CommentCreateForm(props) {
       return err;
     }
   };
+
+  return (
+    <Form className="mt-2 text-center" onSubmit={handleSubmit}>
+      <Form.Group>
+        <InputGroup>
+          <p className="my-2">
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profileImage} />
+            </Link>
+          </p>
+          <Form.Control
+            className={styles.CommentEntryForm}
+            placeholder="share your opinion here!"
+            as="textarea"
+            onChange={handleChange}
+            value={comment_info}
+            rows={2}
+          />
+        </InputGroup>
+      </Form.Group>
+
+      <Button className={styles.CommentButton} type="submit">
+        Post Comment
+      </Button>
+    </Form>
+  );
 }
