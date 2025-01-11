@@ -35,6 +35,24 @@ const ProfileEditForm = () => {
   const [showProfileMsg, setProfileMsg] = useState(false);
   const [errors, setErrors] = useState({});
 
+  useEffect(() => {
+    const handleMount = async () => {
+      if (currentUser?.profile_id?.toString() === id) {
+        try {
+          const { data } = await axiosReq.get(`/profiles/${id}/`);
+          const { name, content, image } = data;
+          setProfileData({ name, content, image });
+        } catch (err) {
+          history.push("/");
+        }
+      } else {
+        history.push("/");
+      }
+    };
+
+    handleMount();
+  }, [currentUser, history, id]);
+
   return <div>ProfileEditForm</div>;
 };
 
