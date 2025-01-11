@@ -27,6 +27,13 @@ const UserPasswordForm = () => {
   const [showPasswordMsg, setPasswordMsg] = useState();
   const [errors, setErrors] = useState({});
 
+  const handleChange = (event) => {
+    setUserData({
+      ...userData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return <div>UserPasswordForm</div>;
 };
 
