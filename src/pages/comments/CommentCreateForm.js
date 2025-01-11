@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from "../../api/axiosDefault";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
