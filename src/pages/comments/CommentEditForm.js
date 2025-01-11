@@ -65,3 +65,5 @@ function CommentEditForm(props) {
     </Form>
   );
 }
+
+export default CommentEditForm;
