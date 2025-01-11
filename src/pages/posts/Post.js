@@ -4,6 +4,8 @@ import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import Avatar from "../../components/Avatar";
 import { DropdownMenu } from "../../components/DropdownMenu";
+import { RiHeartsFill, RiHeartsLine } from "react-icons/ri";
+import { axiosReq } from "../../api/axiosDefault";
 
 const Post = ({
   id,
@@ -14,17 +16,39 @@ const Post = ({
   profile_id,
   profile_image,
   postPage,
+  likes_total,
+  like_id,
+  setPosts,
 }) => {
   const history = useHistory();
 
-  const handleEdit = () => {
-    history.push(`/posts/${id}/edit/`);
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosReq.post("/likes/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id
+            ? { ...post, likes_total: post.likes_total + 1, like_id: data.id }
+            : post
+        ),
+      }));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleDelete = async () => {
+  const handleUnlike = async () => {
     try {
-      await axios.delete(`/posts/${id}/`);
-      history.push("/");
+      await axios.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id
+            ? { ...post, likes_total: post.likes_total - 1, like_id: null }
+            : post
+        ),
+      }));
     } catch (err) {
       console.error(err);
     }
@@ -49,6 +73,18 @@ const Post = ({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{content}</Card.Text>
+        <div>
+          {like_id ? (
+            <span onClick={handleUnlike}>
+              <RiHeartsFill />
+            </span>
+          ) : (
+            <span onClick={handleLike}>
+              <RiHeartsLine />
+            </span>
+          )}
+          {likes_total}
+        </div>
       </Card.Body>
     </Card>
   );
