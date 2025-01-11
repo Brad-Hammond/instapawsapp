@@ -50,4 +50,47 @@ const Comment = (props) => {
       }
     }, 2000);
   };
-}
+
+  return wasDeleted ? (
+    <UserFeedbackCue variant="Info" message="Comment deleted!" />
+  ) : (
+    <div>
+      {showCommentMsg && (
+        <UserFeedbackCue variant="Info" message="Comment edited!" />
+      )}
+
+      <Media>
+        <Link to={`/profiles/${profile_id}`} className="my-2">
+          <Avatar src={profile_image} />
+        </Link>
+        <Media.Body className="align-self-center mb-4">
+          <div className={styles.CommentSection}>
+            <span className={styles.CommentUsername}>{owner}</span>
+            <span className={styles.Date}> ~ {updated_at} </span>
+            <span className={styles.DropdownMenu}>
+              {is_owner && !showEditForm && (
+                <DropdownMenu
+                  handleEdit={() => setShowEditForm(true)}
+                  handleDelete={handleDelete}
+                />
+              )}
+            </span>
+          </div>
+          {showEditForm ? (
+            <CommentEditForm
+              id={id}
+              profile_id={profile_id}
+              profile_image={profile_image}
+              comment_info={comment_info}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+              setCommentMsg={setCommentMsg}
+            />
+          ) : (
+            <p>{comment_info}</p>
+          )}
+        </Media.Body>
+      </Media>
+    </div>
+  );
+};
