@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
@@ -28,7 +28,7 @@ function PostEditForm() {
   const { title, tags, content, image } = postData;
 
   const imageInput = useRef(null);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -39,13 +39,13 @@ function PostEditForm() {
 
         is_owner
           ? setPostData({ title, tags, content, image })
-          : history.push("/");
+          : navigate.push("/");
       } catch (err) {
         return err;
       }
     };
     handleMount();
-  }, [id, history]);
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     setPostData({
@@ -78,7 +78,7 @@ function PostEditForm() {
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}/`);
+      navigate.push(`/posts/${id}/`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -156,7 +156,7 @@ function PostEditForm() {
 
       <Button
         className={`${btnStyles.CancelButton} mx-3`}
-        onClick={() => history.goBack()}
+        onClick={() => navigate.goBack()}
       >
         Cancel Edit
       </Button>

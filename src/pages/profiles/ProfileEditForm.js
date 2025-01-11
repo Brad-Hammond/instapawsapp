@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import {
   useCurrentUser,
@@ -23,7 +23,7 @@ const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
@@ -43,15 +43,15 @@ const ProfileEditForm = () => {
           const { name, content, image } = data;
           setProfileData({ name, content, image });
         } catch (err) {
-          history.push("/");
+          navigate.push("/");
         }
       } else {
-        history.push("/");
+        navigate.push("/");
       }
     };
 
     handleMount();
-  }, [currentUser, history, id]);
+  }, [currentUser, navigate, id]);
 
   const handleChange = (event) => {
     setProfileData({
@@ -78,7 +78,7 @@ const ProfileEditForm = () => {
       }));
       setProfileMsg(true);
       setTimeout(() => {
-        history.goBack();
+        navigate.goBack();
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
@@ -122,7 +122,7 @@ const ProfileEditForm = () => {
       <Button
         className={`mx-3 ${btnStyles.CancelButton}`}
         onMouseDown={(e) => e.preventDefault()}
-        onClick={() => history.goBack()}
+        onClick={() => navigate.goBack()}
       >
         Cancel Changes
       </Button>
