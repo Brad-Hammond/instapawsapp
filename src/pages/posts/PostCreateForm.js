@@ -33,4 +33,21 @@ function PostCreateForm() {
   const { title, tags, content, image } = postData;
   const imageInput = useRef(null);
   const history = useHistory();
+
+  const handleChange = (e) => {
+    setPostData({
+      ...postData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangeImage = (e) => {
+    if (e.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
 }
