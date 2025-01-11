@@ -4,10 +4,11 @@ import { axiosRes } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Comment.module.css";
 import Avatar from "../../components/Avatar";
-import Media from "react-bootstrap/Media";
 import { DropdownMenu } from "../../components/DropdownMenu";
 import CommentEditForm from "./CommentEditForm";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const Comment = (props) => {
   const {
@@ -54,27 +55,28 @@ const Comment = (props) => {
   return wasDeleted ? (
     <UserFeedbackCue variant="Info" message="Comment deleted!" />
   ) : (
-    <div>
+    <Card className={styles.CommentCard}>
       {showCommentMsg && (
         <UserFeedbackCue variant="Info" message="Comment edited!" />
       )}
-
-      <Media>
-        <Link to={`/profiles/${profile_id}`} className="my-2">
-          <Avatar src={profile_image} />
-        </Link>
-        <Media.Body className="align-self-center mb-4">
-          <div className={styles.CommentSection}>
-            <span className={styles.CommentUsername}>{owner}</span>
-            <span className={styles.Date}> ~ {updated_at} </span>
-            <span className={styles.DropdownMenu}>
-              {is_owner && !showEditForm && (
-                <DropdownMenu
-                  handleEdit={() => setShowEditForm(true)}
-                  handleDelete={handleDelete}
-                />
-              )}
-            </span>
+      <Card.Body className="d-flex">
+        <div className="mr-3">
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} alt={`${owner}'s avatar`} />
+          </Link>
+        </div>
+        <div className="flex-grow-1">
+          <div className="d-flex justify-content-between align-items-center">
+            <div>
+              <strong className={styles.CommentUsername}>{owner}</strong>{" "}
+              <span className={styles.Date}>~ {updated_at}</span>
+            </div>
+            {is_owner && !showEditForm && (
+              <DropdownMenu
+                handleEdit={() => setShowEditForm(true)}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
           {showEditForm ? (
             <CommentEditForm
@@ -87,11 +89,11 @@ const Comment = (props) => {
               setCommentMsg={setCommentMsg}
             />
           ) : (
-            <p>{comment_info}</p>
+            <p className={styles.CommentContent}>{comment_info}</p>
           )}
-        </Media.Body>
-      </Media>
-    </div>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
