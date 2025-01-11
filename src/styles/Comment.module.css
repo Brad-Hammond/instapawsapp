@@ -1,0 +1,47 @@
+.CommentSection {
+    color: #588157;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+  }
+  
+  .CommentUsername {
+    color: #344E41;
+    font-weight: bold;
+    margin-right: 3px;
+  }
+  
+  .Date {
+    font-weight: lighter;
+    color: #3A5A40;
+  }
+  
+  .DropdownMenu {
+    width: 20%;
+    padding: 0px;
+    color: gray;
+    position: absolute;
+    right: 0;
+    z-index: 99;
+  }
+  
+  .DropdownMenu:hover {
+    color: #588157;
+  }
+  
+  .DropdownMenu i {
+    color: #344E41;
+  }
+  
+  @media (max-width: 576px) {
+    .DropdownMenu {
+      width: 15%;
+      padding: 0px;
+      color: gray;
+      position: absolute;
+      margin-right: 0;
+      right: 0;
+      z-index: 99;
+    }
+  }
+  
