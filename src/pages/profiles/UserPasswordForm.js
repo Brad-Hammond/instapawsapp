@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefault";
 import appStyles from "../../App.module.css";
@@ -16,7 +16,7 @@ import Alert from "react-bootstrap/Alert";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
 
 const UserPasswordForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
   const currentUser = useCurrentUser();
 
@@ -37,9 +37,9 @@ const UserPasswordForm = () => {
 
   useEffect(() => {
     if (currentUser?.profile_id?.toString() !== id) {
-      history.push("/");
+      navigate.push("/");
     }
-  }, [currentUser, history, id]);
+  }, [currentUser, navigate, id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,7 +47,7 @@ const UserPasswordForm = () => {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       setPasswordMsg(true);
       setTimeout(function () {
-        history.goBack();
+        navigate.goBack();
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
@@ -121,7 +121,7 @@ const UserPasswordForm = () => {
               <Button
                 onMouseDown={(event) => event.preventDefault()}
                 className={`mx-2 ${btnStyles.CancelButton}`}
-                onClick={() => history.goBack()}
+                onClick={() => navigate.goBack()}
               >
                 Go back
               </Button>
