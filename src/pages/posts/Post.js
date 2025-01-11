@@ -1,10 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import Avatar from "../../components/Avatar";
+import { DropdownMenu } from "../../components/DropdownMenu";
 
-const Post = ({ id, title, image, content, owner, profile_id, profile_image }) => {
+const Post = ({
+  id,
+  title,
+  image,
+  content,
+  owner,
+  profile_id,
+  profile_image,
+  postPage,
+}) => {
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit/`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/posts/${id}/`);
+      history.push("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <Card>
       <Card.Body>
@@ -13,6 +38,9 @@ const Post = ({ id, title, image, content, owner, profile_id, profile_image }) =
             <Avatar src={profile_image} height={55} />
             {owner}
           </Link>
+          {postPage && (
+            <DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}/`}>
