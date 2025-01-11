@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/SignupLogIn.module.css";
@@ -13,7 +13,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-import useCookies from "react-cookie/cjs/useCookies";
+import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
 
 const LogInForm = () => {
@@ -35,7 +35,7 @@ const LogInForm = () => {
     });
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const setAuthToken = (data) => {
     const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
     setCookie("refreshTokenTimestamp", refreshTokenTimestamp);
@@ -49,7 +49,7 @@ const LogInForm = () => {
       setCurrentUser(data.user);
       setAuthToken(data);
 
-      history.push("/");
+      navigate.push("/");
     } catch (err) {
       if (err.response) {
         setErrors(err.response?.data);
@@ -141,7 +141,7 @@ const LogInForm = () => {
               alt="Dog on leash login image"
               className={`${styles.LoginImage}`}
               src={
-                "https://res.cloudinary.com/drhfh23tl/image/upload/v1679416297/login-img_hqathg.png"
+                "https://res.cloudinary.com/dpdhjt0cf/image/upload/v1736519045/New-Main-1254140_yaomfl.jpg"
               }
             />
           </Col>

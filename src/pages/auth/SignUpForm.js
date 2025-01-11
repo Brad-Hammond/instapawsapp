@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 import styles from "../../styles/SignupLogIn.module.css";
@@ -23,7 +23,7 @@ const SignUpForm = () => {
   });
   const { username, password1, password2 } = signUpData;
   const [errors, setErrors] = useState({});
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSignUpData({
@@ -36,11 +36,12 @@ const SignUpForm = () => {
     e.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/login");
+      navigate("/login"); // Navigate to the login page after successful signup
     } catch (err) {
-      setErrors(err.response?.data);
+      setErrors(err.response?.data || {});
     }
   };
+
   return (
     <CSSTransition
       in={true}
@@ -61,7 +62,7 @@ const SignUpForm = () => {
                 <Form.Control
                   className={styles.Input}
                   type="text"
-                  placeholder="username"
+                  placeholder="Enter username"
                   name="username"
                   value={username}
                   onChange={handleChange}
@@ -82,7 +83,7 @@ const SignUpForm = () => {
                 <Form.Control
                   className={styles.Input}
                   type="password"
-                  placeholder="password"
+                  placeholder="Enter password"
                   name="password1"
                   value={password1}
                   onChange={handleChange}
@@ -97,12 +98,13 @@ const SignUpForm = () => {
                   {message}
                 </Alert>
               ))}
+
               <Form.Group controlId="password2">
-                <Form.Label className="d-none">Password</Form.Label>
+                <Form.Label className="d-none">Confirm Password</Form.Label>
                 <Form.Control
                   className={styles.Input}
                   type="password"
-                  placeholder="confirm password"
+                  placeholder="Confirm password"
                   name="password2"
                   value={password2}
                   onChange={handleChange}
@@ -117,11 +119,12 @@ const SignUpForm = () => {
                   {message}
                 </Alert>
               ))}
+
               <Button
                 className={`${btnStyles.HomeButton} ${styles.LogInSignUpButton}`}
                 type="submit"
               >
-                Create account!
+                Create Account!
               </Button>
               {errors.non_field_errors?.map((message, idx) => (
                 <Alert
@@ -139,7 +142,7 @@ const SignUpForm = () => {
               className={`${styles.Link} mt-4 font-weight-bold`}
               to="/login"
             >
-              Have an account? Click here to log in.
+              Already have an account? Log in here!
             </Link>
           </Container>
           <Container>
@@ -148,7 +151,7 @@ const SignUpForm = () => {
                 alt="Dog on leash login image"
                 className={`${styles.LoginImage} text-center`}
                 src={
-                  "https://res.cloudinary.com/drhfh23tl/image/upload/v1679416297/login-img_hqathg.png"
+                  "https://res.cloudinary.com/dpdhjt0cf/image/upload/v1736519045/New-Main-1254140_yaomfl.jpg"
                 }
               />
             </Col>
