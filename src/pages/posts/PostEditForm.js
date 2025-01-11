@@ -30,4 +30,37 @@ function PostEditForm() {
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/posts/${id}/`);
+        const { is_owner, title, tags, content, image } = data;
+
+        is_owner
+          ? setPostData({ title, tags, content, image })
+          : history.push("/");
+      } catch (err) {
+        return err;
+      }
+    };
+    handleMount();
+  }, [id, history]);
+
+  const handleChange = (e) => {
+    setPostData({
+      ...postData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangeImage = (e) => {
+    if (e.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
 }
