@@ -85,4 +85,81 @@ function PostEditForm() {
       }
     }
   };
+
+  const textFields = (
+    <div className="text-center">
+      <Form.Group>
+        <Form.Label>Change title?</Form.Label>
+        {errors.title?.map((message, idx) => (
+          <Alert variant="warning" className={styles.AlertStyles} key={idx}>
+            {message}
+          </Alert>
+        ))}
+        <Form.Control
+          type="text"
+          name="title"
+          className={`${formStyles.Form} ${inputStyles.Input}`}
+          value={title}
+          onChange={handleChange}
+          aria-label="title"
+        />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Change Tag?</Form.Label>
+        {errors.tags?.map((message, idx) => (
+          <Alert variant="warning" className={styles.AlertStyles} key={idx}>
+            {message}
+          </Alert>
+        ))}
+        <Form.Control
+          as="select"
+          name="tags"
+          className={`${formStyles.Form}`}
+          value={tags}
+          onChange={handleChange}
+          aria-label="tags"
+        >
+          <option>Select your tag!</option>
+          <option value="Puppies">Puppies</option>
+          <option value="Training">Training</option>
+          <option value="Health">Health</option>
+          <option value="Grooming">Grooming</option>
+          <option value="Adoption">Adoption</option>
+          <option value="Nutrition">Nutrition</option>
+          <option value="Toys">Toys</option>
+          <option value="Walks">Walks</option>
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Edit your description?</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          name="content"
+          className={`${formStyles.Form} ${inputStyles.Input}`}
+          value={content}
+          onChange={handleChange}
+          aria-label="post content"
+        />
+      </Form.Group>
+      {errors.content?.map((message, idx) => (
+        <Alert variant="warning" className={styles.AlertStyles} key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Button className={btnStyles.Button} type="submit">
+        Save Edit
+      </Button>
+
+      <Button
+        className={`${btnStyles.CancelButton} mx-3`}
+        onClick={() => history.goBack()}
+      >
+        Cancel Edit
+      </Button>
+    </div>
+  );
 }
