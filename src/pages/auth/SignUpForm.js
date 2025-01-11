@@ -145,7 +145,7 @@ const SignUpForm = () => {
           <Container>
             <Col className="text-center">
               <Image
-                alt="Cartoon Fitness blog sign up image"
+                alt="Dog on leash login image"
                 className={`${styles.LoginImage} text-center`}
                 src={
                   "https://res.cloudinary.com/drhfh23tl/image/upload/v1679416297/login-img_hqathg.png"
