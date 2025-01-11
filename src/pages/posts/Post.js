@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Avatar from "../../components/Avatar";
 import { DropdownMenu } from "../../components/DropdownMenu";
 import Badge from "react-bootstrap/Badge";
@@ -12,8 +14,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { axiosReq } from "../../api/axiosDefault";
 import CSSTransition from "react-transition-group/CSSTransition";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
-import styles from "../../styles/Post.module.css";
-import tagsStyles from "../../styles/GeneralPostsPage.module.css";
+
 
 const Post = ({
   id,
@@ -33,18 +34,18 @@ const Post = ({
 }) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
-  const history = useHistory();
+  const navigate = useNavigate();
   const [showPostMsg, setShowPostMsg] = useState(false);
 
   const handleEdit = () => {
-    history.push(`/posts/${id}/edit/`);
+    navigate(`/posts/${id}/edit/`);
   };
 
   const handleDelete = async () => {
     try {
       await axios.delete(`/posts/${id}/`);
       setShowPostMsg(true);
-      setTimeout(() => history.push("/"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       console.error(err);
     }
@@ -84,84 +85,64 @@ const Post = ({
 
   return (
     <CSSTransition in appear timeout={300} classNames="fade">
-      <Card className={styles.Post}>
+      <Card>
         {showPostMsg && (
           <UserFeedbackCue
-            variant="Info"
-            message="This post is being deleted...!"
+            variant="info"
+            message="This post is being deleted..."
           />
         )}
         <Card.Body>
-          <Media className={styles.Container}>
-            <Link to={`/profiles/${profile_id}`}>
-              <Avatar src={profile_image} height={55} />
-              {owner}
-            </Link>
-            <div className={styles.AvatarPos}>
-              <span className={`${styles.UpdatedAt} ${styles.GentleShake}`}>
-                {updated_at}
-              </span>
+          <Row>
+            <Col xs={2}>
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar src={profile_image} height={55} />
+              </Link>
+            </Col>
+            <Col xs={10}>
+              <Link to={`/profiles/${profile_id}`}>{owner}</Link>
               {is_owner && postPage && (
-                <div className={styles.EditBtn}>
-                  <DropdownMenu
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                  />
-                </div>
+                <DropdownMenu
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
               )}
-            </div>
-          </Media>
+            </Col>
+          </Row>
         </Card.Body>
         <Link to={`/posts/${id}/`}>
           <Card.Img src={image} alt={title} />
         </Link>
         <Card.Body>
-          <Card.Title className="text-center">{title}</Card.Title>
+          <Card.Title>{title}</Card.Title>
           <Card.Text>{content}</Card.Text>
           {tags && (
             <Card.Text>
-              <Badge variant="primary" className={tagsStyles.Tags}>
-                <span>{tags}</span>
-              </Badge>
+              <Badge>{tags}</Badge>
             </Card.Text>
           )}
           <div>
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can&apos;t heart this!</Tooltip>}
+                overlay={<Tooltip>You can't heart this!</Tooltip>}
               >
-                <i className={styles.Icon}>
+                <i>
                   <RiHeartsLine />
                 </i>
               </OverlayTrigger>
             ) : like_id ? (
               <span onClick={handleUnlike}>
-                <i className={styles.LikedIcon}>
-                  <RiHeartsFill />
-                </i>
-              </span>
-            ) : currentUser ? (
-              <span onClick={handleLike}>
-                <i className={styles.Icon}>
-                  <RiHeartsLine />
-                </i>
+                <RiHeartsFill />
               </span>
             ) : (
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip>Log in to heart this post!</Tooltip>}
-              >
-                <i className={styles.Icon}>
-                  <RiHeartsLine />
-                </i>
-              </OverlayTrigger>
+              <span onClick={handleLike}>
+                <RiHeartsLine />
+              </span>
             )}
             {likes_total}
             <Link to={`/posts/${id}/`}>
-              <i className={styles.Icon}>
-                <RiChat3Line />
-              </i>
+              <RiChat3Line />
             </Link>
             {comments_total}
           </div>
