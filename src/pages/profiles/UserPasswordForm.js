@@ -37,4 +37,11 @@ const UserPasswordForm = () => {
   return <div>UserPasswordForm</div>;
 };
 
+useEffect(() => {
+    if (currentUser?.profile_id?.toString() !== id) {
+      history.push("/");
+    }
+  }, [currentUser, history, id]);
+  
+
 export default UserPasswordForm;
