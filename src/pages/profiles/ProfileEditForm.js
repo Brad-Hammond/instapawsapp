@@ -129,7 +129,70 @@ const ProfileEditForm = () => {
     </>
   );
 
-  return <div>ProfileEditForm</div>;
+  return (
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={{ enter: 300 }}
+      classNames="fade"
+    >
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col
+            className="d-none d-md-block p-0 p-md-2 text-center"
+            md={8}
+            lg={8}
+          >
+            <Container className={appStyles.Content}>{textFields}</Container>
+          </Col>
+          <Col className="py-2 p-0 p-md-2 text-center" md={4} lg={4}>
+            <Container className={appStyles.Content}>
+              <Form.Group>
+                {image && (
+                  <figure>
+                    <Image src={image} alt="Your new profile picture" fluid />
+                  </figure>
+                )}
+
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} btn my-auto mb-sm-4`}
+                    htmlFor="image-upload"
+                  >
+                    Change avatar
+                  </Form.Label>
+                </div>
+                <Form.File
+                  id="image-upload"
+                  ref={imageFile}
+                  accept="image/*"
+                  className="d-none"
+                  onChange={(e) => {
+                    if (e.target.files.length) {
+                      setProfileData({
+                        ...profileData,
+                        image: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }
+                  }}
+                />
+              </Form.Group>
+              {errors?.image?.map((message, idx) => (
+                <Alert
+                  variant="warning"
+                  className={alertStyles.AlertStyles}
+                  key={idx}
+                >
+                  {message}
+                </Alert>
+              ))}
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+        </Row>
+      </Form>
+    </CSSTransition>
+  );
 };
 
 export default ProfileEditForm;
