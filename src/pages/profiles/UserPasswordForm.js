@@ -43,5 +43,18 @@ useEffect(() => {
     }
   }, [currentUser, history, id]);
   
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    await axiosRes.post("/dj-rest-auth/password/change/", userData);
+    setPasswordMsg(true);
+    setTimeout(function () {
+      history.goBack();
+    }, 2000);
+  } catch (err) {
+    setErrors(err.response?.data);
+  }
+};
+
 
 export default UserPasswordForm;
