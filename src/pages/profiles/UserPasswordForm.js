@@ -56,5 +56,84 @@ const handleSubmit = async (event) => {
   }
 };
 
+return (
+  <CSSTransition
+    in={true}
+    appear={true}
+    timeout={{ enter: 300 }}
+    classNames="fade"
+  >
+    <Row>
+      <Col className="py-2 mx-auto text-center font-weight-bold" md={10}>
+        {showPasswordMsg && (
+          <UserFeedbackCue
+            variant="Info"
+            message="Password changed! Taking you back!"
+          />
+        )}
+        <Container className={appStyles.Content}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>New password</Form.Label>
+              <Form.Control
+                placeholder="type your new password"
+                type="password"
+                value={new_password1}
+                onChange={handleChange}
+                name="new_password1"
+                className={`${inputStyles.Input} text-center`}
+              />
+            </Form.Group>
+            {errors?.new_password1?.map((message, idx) => (
+              <Alert
+                variant="warning"
+                className={alertStyles.AlertStyles}
+                key={idx}
+              >
+                {message}
+              </Alert>
+            ))}
+            <Form.Group>
+              <Form.Label>Confirm new password</Form.Label>
+              <Form.Control
+                placeholder="confirm new password"
+                type="password"
+                value={new_password2}
+                onChange={handleChange}
+                name="new_password2"
+                className={`${inputStyles.Input} text-center`}
+              />
+            </Form.Group>
+            {errors?.new_password2?.map((message, idx) => (
+              <Alert
+                variant="warning"
+                className={alertStyles.AlertStyles}
+                key={idx}
+              >
+                {message}
+              </Alert>
+            ))}
+            <Button
+              type="submit"
+              className={`mx-2 my-2 ${btnStyles.Button}`}
+              onMouseDown={(event) => event.preventDefault()}
+            >
+              Save new password
+            </Button>
+            <Button
+              onMouseDown={(event) => event.preventDefault()}
+              className={`mx-2 ${btnStyles.CancelButton}`}
+              onClick={() => history.goBack()}
+            >
+              Go back
+            </Button>
+          </Form>
+        </Container>
+      </Col>
+    </Row>
+  </CSSTransition>
+);
+
+
 
 export default UserPasswordForm;
