@@ -34,4 +34,34 @@ function CommentEditForm(props) {
       return err;
     }
   };
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="pr-1">
+        <Form.Control
+          className={styles.CommentEntryForm}
+          as="textarea"
+          value={formContent}
+          onChange={handleChange}
+          rows={2}
+        />
+      </Form.Group>
+      <div className="text-right">
+        <button
+          className={styles.CancelCommentEditButton}
+          onClick={() => setShowEditForm(false)}
+          type="button"
+        >
+          Cancel Edit
+        </button>
+        <button
+          className={styles.CommentButton}
+          disabled={!comment_info.trim()}
+          type="submit"
+        >
+          Update
+        </button>
+      </div>
+    </Form>
+  );
 }
