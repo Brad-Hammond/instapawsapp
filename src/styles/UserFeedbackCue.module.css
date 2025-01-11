@@ -1,0 +1,32 @@
+.Alert {
+  position: relative;
+  padding: 1rem 1rem;
+  border: 0.5px solid transparent;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.Info {
+  background-color: #A3B18A;
+  border-color: #A3B18A;
+}
+
+.Close {
+  margin-left: 20px;
+  color: #344E41;
+  font-weight: bold;
+  float: right;
+  font-size: 18px;
+  line-height: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.Close:hover {
+  color: #588157;
+}
+
+.Hidden {
+  display: none;
+}
