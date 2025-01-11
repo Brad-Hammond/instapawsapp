@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import Avatar from "../../components/Avatar";
 import { DropdownMenu } from "../../components/DropdownMenu";
-import { RiHeartsFill, RiHeartsLine } from "react-icons/ri";
+import Badge from "react-bootstrap/Badge";
+import { RiHeartsFill, RiHeartsLine, RiChat3Line } from "react-icons/ri";
 import { axiosReq } from "../../api/axiosDefault";
 
 const Post = ({
@@ -18,9 +19,24 @@ const Post = ({
   postPage,
   likes_total,
   like_id,
+  comments_total,
+  tags,
   setPosts,
 }) => {
   const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit/`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/posts/${id}/`);
+      history.push("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -73,6 +89,11 @@ const Post = ({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{content}</Card.Text>
+        {tags && (
+          <Card.Text>
+            <Badge>{tags}</Badge>
+          </Card.Text>
+        )}
         <div>
           {like_id ? (
             <span onClick={handleUnlike}>
@@ -84,6 +105,10 @@ const Post = ({
             </span>
           )}
           {likes_total}
+          <Link to={`/posts/${id}/`}>
+            <RiChat3Line />
+          </Link>
+          {comments_total}
         </div>
       </Card.Body>
     </Card>
