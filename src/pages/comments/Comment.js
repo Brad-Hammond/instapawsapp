@@ -26,4 +26,28 @@ const Comment = (props) => {
   const is_owner = currentUser?.username === owner;
   const [showCommentMsg, setCommentMsg] = useState(false);
   const [wasDeleted, setWasDeleted] = useState(false);
+
+  const handleDelete = async () => {
+    setWasDeleted(true);
+    setTimeout(async () => {
+      try {
+        await axiosRes.delete(`/comments/${id}/`);
+        setPost((prevPost) => ({
+          results: [
+            {
+              ...prevPost.results[0],
+              comments_total: prevPost.results[0].comments_total - 1,
+            },
+          ],
+        }));
+
+        setComments((prevComments) => ({
+          ...prevComments,
+          results: prevComments.results.filter((comment) => comment.id !== id),
+        }));
+      } catch (err) {
+        return err;
+      }
+    }, 2000);
+  };
 }
