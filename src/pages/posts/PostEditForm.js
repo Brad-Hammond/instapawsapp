@@ -162,4 +162,63 @@ function PostEditForm() {
       </Button>
     </div>
   );
+
+  return (
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={{ enter: 300 }}
+      classNames="fade"
+    >
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col md={7} lg={8} className="d-none d-md-block p-0 p-md-2">
+            <Container className={appStyles.Content}>{textFields}</Container>
+          </Col>
+          <Col className="py-2 p-0 p-md-2" md={5} lg={4}>
+            <Container
+              className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            >
+              <Form.Group className="text-center">
+                <figure>
+                  <Image
+                    className={styles.ImageInput}
+                    src={image}
+                    alt="Your new uploaded image"
+                    rounded
+                  />
+                </figure>
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} btn`}
+                    type="submit"
+                    htmlFor="image-upload"
+                  >
+                    Edit Image
+                  </Form.Label>
+                </div>
+                <Form.File
+                  id="image-upload"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  ref={imageInput}
+                  className="d-none"
+                />
+              </Form.Group>
+              {errors.image?.map((message, idx) => (
+                <Alert
+                  variant="warning"
+                  className={styles.AlertStyles}
+                  key={idx}
+                >
+                  {message}
+                </Alert>
+              ))}
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+        </Row>
+      </Form>
+    </CSSTransition>
+  );
 }
