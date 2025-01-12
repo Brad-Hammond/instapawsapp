@@ -50,7 +50,7 @@ const UserPasswordForm = () => {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       setPasswordMsg(true);
       setTimeout(function () {
-        navigate.goBack();
+        navigate(-1);
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
