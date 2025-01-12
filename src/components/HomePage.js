@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/HomePage.module.css";
@@ -7,11 +7,11 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import CSSTransition from "react-transition-group/CSSTransition";
-
+import { CSSTransition } from "react-transition-group";
 
 const HomePage = () => {
   const currentUser = useCurrentUser();
+  const nodeRef = useRef(null); // Create a ref for the CSSTransition node
 
   return (
     <CSSTransition
@@ -19,9 +19,13 @@ const HomePage = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Attach the ref to CSSTransition
     >
-      <Container fluid>
-            <Row className={`${appStyles.Content} p-5`} style={{ backgroundColor: "#A3B18A", color: "white" }}>
+      <Container fluid ref={nodeRef}>
+        <Row
+          className={`${appStyles.Content} p-5`}
+          style={{ backgroundColor: "#A3B18A", color: "white" }}
+        >
           <Col>
             <h1 className={styles.HomeTitle}>Welcome to InstaPaws</h1>
             <p className={`${styles.HomeDescription} lead`}>
@@ -29,12 +33,22 @@ const HomePage = () => {
             </p>
             {!currentUser && (
               <p>
-                <NavLink to="/signup">
+                <NavLink
+                  to="/signup"
+                  className={({ isActive }) =>
+                    isActive ? styles.ActiveLink : ""
+                  }
+                >
                   <Button className={`${styles.HomeButton} text-center`}>
                     Sign Up
                   </Button>
                 </NavLink>
-                <NavLink to="/login">
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? styles.ActiveLink : ""
+                  }
+                >
                   <Button className={`${styles.HomeButton} text-center`}>
                     Log In
                   </Button>
@@ -46,7 +60,11 @@ const HomePage = () => {
 
         <Container className="my-5">
           <Row className="g-4">
-            <Col md={6} lg={4} className={`${appStyles.Content} ${styles.HomePromptOne} ${styles.HomePrompt}`}>
+            <Col
+              md={6}
+              lg={4}
+              className={`${appStyles.Content} ${styles.HomePromptOne} ${styles.HomePrompt}`}
+            >
               <div className="p-4">
                 <h2 className="text-center">Lorem ispum</h2>
                 <p className="mt-4">
@@ -55,14 +73,20 @@ const HomePage = () => {
               </div>
             </Col>
             <Col md={6} lg={4}>
-              <div className={`${appStyles.Content} ${styles.HomePrompt}`}>
+              <div
+                className={`${appStyles.Content} ${styles.HomePrompt}`}
+              >
                 <h2 className="text-center">Lorem ispum</h2>
                 <p className="m-3 mt-4">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
             </Col>
-            <Col md={6} lg={4} className={`${appStyles.Content} ${styles.HomePromptThree} ${styles.HomePrompt}`}>
+            <Col
+              md={6}
+              lg={4}
+              className={`${appStyles.Content} ${styles.HomePromptThree} ${styles.HomePrompt}`}
+            >
               <div className="p-4">
                 <h2 className="text-center">Lorem ispum</h2>
                 <p className="mt-4">
@@ -83,11 +107,25 @@ const HomePage = () => {
             <p className={`${styles.ContactIcons} text-white`}>
               Connect with me:
             </p>
-            <a href="https://github.com/Brad-Hammond?tab=repositories" aria-label="Check out my Github!" target="_blank" rel="noopener noreferrer">
-              <i className={`${styles.ContactIcons} ${styles.GithubIcon} fab fa-github`} />
+            <a
+              href="https://github.com/Brad-Hammond?tab=repositories"
+              aria-label="Check out my Github!"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i
+                className={`${styles.ContactIcons} ${styles.GithubIcon} fab fa-github`}
+              />
             </a>
-            <a href="https://www.linkedin.com/in/bradley-hammond-0ba801195/" aria-label="Check out my LinkedIn!" target="_blank" rel="noopener noreferrer">
-              <i className={`${styles.ContactIcons} ${styles.LinkedinIcon} fab fa-linkedin`} />
+            <a
+              href="https://www.linkedin.com/in/bradley-hammond-0ba801195/"
+              aria-label="Check out my LinkedIn!"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i
+                className={`${styles.ContactIcons} ${styles.LinkedinIcon} fab fa-linkedin`}
+              />
             </a>
           </div>
         </footer>
