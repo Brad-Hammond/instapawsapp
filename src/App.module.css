@@ -31,8 +31,8 @@ a:hover {
 }
 
 a:hover i {
-  color: #9d4edd;
-  fill: #9d4edd;
+  color: #344e41;
+  fill: white;
   transition: color, fill ease-in-out 0.3s;
 }
 
@@ -45,7 +45,7 @@ a:hover span,
 button:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
-  color: #9d4edd;
+  color: white;
   font-weight: 600;
 }
 
@@ -60,6 +60,6 @@ i:hover,
 button:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
-  color: #9d4edd;
+  color: white;
   font-weight: 600;
 }
