@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { axiosRes } from "../api/axiosDefault";
+import { axiosReq, axiosRes } from "../api/axiosDefault";
 import { useCurrentUser } from "./CurrentUserContext";
-import { followHelper } from "../utils/utils";
+import { followHelper, unfollowHelper } from "../utils/utils";
 
 export const ProfileDataContext = createContext();
 export const SetProfileDataContext = createContext();
@@ -49,13 +49,13 @@ export const ProfileDataProvider = ({ children }) => {
         ...prevState,
         profilePage: {
           results: prevState.profilePage.results.map((profile) =>
-            followHelper(profile, clickedProfile)
+            unfollowHelper(profile, clickedProfile)
           ),
         },
         popularProfiles: {
           ...prevState.popularProfiles,
           results: prevState.popularProfiles.results.map((profile) =>
-            followHelper(profile, clickedProfile)
+            unfollowHelper(profile, clickedProfile)
           ),
         },
       }));
@@ -67,7 +67,7 @@ export const ProfileDataProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosRes.get(
+        const { data } = await axiosReq.get(
           "/profiles/?ordering=-followers_total"
         );
         setProfileData((prevState) => ({
