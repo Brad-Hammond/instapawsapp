@@ -49,7 +49,7 @@ const LogInForm = () => {
       setCurrentUser(data.user);
       setAuthToken(data);
 
-      navigate.push("/");
+      navigate("/");
     } catch (err) {
       if (err.response) {
         setErrors(err.response?.data);
