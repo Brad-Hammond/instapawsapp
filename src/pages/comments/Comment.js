@@ -8,7 +8,6 @@ import { DropdownMenu } from "../../components/DropdownMenu";
 import CommentEditForm from "./CommentEditForm";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 
 const Comment = (props) => {
   const {
@@ -25,8 +24,8 @@ const Comment = (props) => {
   const currentUser = useCurrentUser();
   const [showEditForm, setShowEditForm] = useState(false);
   const is_owner = currentUser?.username === owner;
-  const [showCommentMsg, setCommentMsg] = useState(false);
   const [wasDeleted, setWasDeleted] = useState(false);
+  const [showCommentMsg, setCommentMsg] = useState(false);
 
   const handleDelete = async () => {
     setWasDeleted(true);
@@ -47,7 +46,7 @@ const Comment = (props) => {
           results: prevComments.results.filter((comment) => comment.id !== id),
         }));
       } catch (err) {
-        return err;
+        console.error(err);
       }
     }, 2000);
   };
