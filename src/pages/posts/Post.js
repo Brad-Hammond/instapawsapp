@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react"; // Added useRef
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -12,9 +12,8 @@ import { RiHeartsFill, RiHeartsLine, RiChat3Line } from "react-icons/ri";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { axiosReq } from "../../api/axiosDefault";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { CSSTransition } from "react-transition-group";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
-
 
 const Post = ({
   id,
@@ -36,6 +35,9 @@ const Post = ({
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
   const [showPostMsg, setShowPostMsg] = useState(false);
+
+  // Step 1: Create a ref for the CSSTransition node
+  const nodeRef = useRef(null);
 
   const handleEdit = () => {
     navigate(`/posts/${id}/edit/`);
@@ -84,8 +86,14 @@ const Post = ({
   };
 
   return (
-    <CSSTransition in appear timeout={300} classNames="fade">
-      <Card>
+    <CSSTransition
+      in
+      appear
+      timeout={300}
+      classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+    >
+      <Card ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
         {showPostMsg && (
           <UserFeedbackCue
             variant="info"
