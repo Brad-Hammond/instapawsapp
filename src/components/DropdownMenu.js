@@ -4,22 +4,20 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { TbGridDots } from "react-icons/tb";
 import styles from "../styles/DropdownMenu.module.css";
 
-
 const DropdownSelect = React.forwardRef(({ onClick }, ref) => (
-  (DropdownSelect.displayName = "DropdownSelect")
-  (
-    <button
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-      className={styles.DropdownToggle}
-    >
-      <TbGridDots />
-    </button>
-  )
+  <button
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+    className={styles.DropdownToggle}
+  >
+    <TbGridDots />
+  </button>
 ));
+
+DropdownSelect.displayName = "DropdownSelect";
 
 export const DropdownMenu = ({ handleEdit, handleDelete }) => (
   <Dropdown className={styles.Dropdown} drop="right">
