@@ -1,9 +1,24 @@
+.SearchContainer {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
 .SearchBar input {
   border-radius: 20px;
   color: #344e41;
-  padding-left: 50px;
-  margin-bottom: 15px;
+  padding-left: 45px;
+  padding-right: 20px;
   border: 1px solid #ccc;
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
 }
 
 .SearchBar input:focus {
@@ -13,16 +28,14 @@
 
 .SearchIcon {
   position: absolute;
+  left: 20px; 
+  top: 50%;
+  transform: translateY(-50%);
   color: #3a5a40;
   font-size: 1.6rem;
-  margin: 1.5%;
+  pointer-events: none;
 }
 
-.SearchIcon:hover {
-  cursor: pointer;
-  transition: color ease-in-out 0.3s;
-  color: #a3b18a;
-}
 
 .Tags {
   background-color: #a3b18a !important;
@@ -76,5 +89,16 @@
   div span img {
     height: 40px;
     width: 40px;
+  }
+
+  .SearchContainer {
+    width: calc(100% - 20px);
+    margin: 0 auto 20px;
+    max-width: 100%;
+  }
+
+  .SearchBar input {
+    width: 100%;
+    max-width: 100%;
   }
 }
