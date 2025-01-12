@@ -22,21 +22,35 @@ function CommentCreateForm(props) {
         post,
         comment_info,
       });
+
+      // Safely update comments list
       setComments((prevComments) => ({
         ...prevComments,
-        results: [data, ...prevComments.results],
+        results: [data, ...(prevComments?.results || [])],
       }));
-      setPost((prevPost) => ({
-        results: [
-          {
-            ...prevPost.results[0],
-            comments_total: prevPost.results[0].comments_total + 1,
-          },
-        ],
-      }));
+
+      // Safely update the post's comments_total
+      setPost((prevPost) => {
+        if (!prevPost?.results?.length) {
+          console.error("Post data is missing or invalid.");
+          return prevPost;
+        }
+
+        const updatedPost = {
+          ...prevPost.results[0],
+          comments_total: (prevPost.results[0].comments_total || 0) + 1,
+        };
+
+        return {
+          ...prevPost,
+          results: [updatedPost],
+        };
+      });
+
+      // Clear the input field
       setCommentInfo("");
     } catch (err) {
-      return err;
+      console.error("Failed to create comment:", err);
     }
   };
 
@@ -51,7 +65,7 @@ function CommentCreateForm(props) {
           </p>
           <Form.Control
             className={styles.CommentEntryForm}
-            placeholder="share your opinion here!"
+            placeholder="Share your opinion here!"
             as="textarea"
             onChange={handleChange}
             value={comment_info}
@@ -60,7 +74,11 @@ function CommentCreateForm(props) {
         </InputGroup>
       </Form.Group>
 
-      <Button className={styles.CommentButton} type="submit">
+      <Button
+        className={styles.CommentButton}
+        type="submit"
+        disabled={!comment_info.trim()}
+      >
         Post Comment
       </Button>
     </Form>
