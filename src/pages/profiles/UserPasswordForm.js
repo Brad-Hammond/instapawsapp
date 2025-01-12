@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react"; // Added useRef
 import { useNavigate, useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefault";
@@ -27,6 +27,9 @@ const UserPasswordForm = () => {
   const { new_password1, new_password2 } = userData;
   const [showPasswordMsg, setPasswordMsg] = useState();
   const [errors, setErrors] = useState({});
+
+  // Step 1: Create a ref for CSSTransition
+  const nodeRef = useRef(null);
 
   const handleChange = (event) => {
     setUserData({
@@ -60,8 +63,9 @@ const UserPasswordForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Row>
+      <Row ref={nodeRef}> {/* Step 3: Attach nodeRef to Row */}
         <Col className="py-2 mx-auto text-center font-weight-bold" md={10}>
           {showPasswordMsg && (
             <UserFeedbackCue

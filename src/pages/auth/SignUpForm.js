@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react"; // Added useRef
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 import styles from "../../styles/SignupLogIn.module.css";
 import btnStyles from "../../styles/HomePage.module.css";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { CSSTransition } from "react-transition-group";
 import { TbUserPlus } from "react-icons/tb";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -24,6 +24,9 @@ const SignUpForm = () => {
   const { username, password1, password2 } = signUpData;
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  // Step 1: Create a ref for the CSSTransition node
+  const nodeRef = useRef(null);
 
   const handleChange = (e) => {
     setSignUpData({
@@ -48,8 +51,9 @@ const SignUpForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Row className={styles.Row}>
+      <Row className={styles.Row} ref={nodeRef}> {/* Step 3: Attach ref to the parent node */}
         <Col className={`${styles.Col} text-center`}>
           <Container>
             <h1 className={styles.Header}>

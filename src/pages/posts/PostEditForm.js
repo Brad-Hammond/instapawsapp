@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react"; // Added useRef
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import styles from "../../styles/PostCreateEditForm.module.css";
@@ -31,6 +31,9 @@ function PostEditForm() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  // Step 1: Create a ref for the CSSTransition node
+  const nodeRef = useRef(null);
+
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -39,9 +42,9 @@ function PostEditForm() {
 
         is_owner
           ? setPostData({ title, tags, content, image })
-          : navigate.push("/");
+          : navigate("/");
       } catch (err) {
-        return err;
+        console.error(err);
       }
     };
     handleMount();
@@ -78,7 +81,7 @@ function PostEditForm() {
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
-      navigate.push(`/posts/${id}/`);
+      navigate(`/posts/${id}/`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -156,7 +159,7 @@ function PostEditForm() {
 
       <Button
         className={`${btnStyles.CancelButton} mx-3`}
-        onClick={() => navigate.goBack()}
+        onClick={() => navigate(-1)}
       >
         Cancel Edit
       </Button>
@@ -169,8 +172,9 @@ function PostEditForm() {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
         <Row>
           <Col md={7} lg={8} className="d-none d-md-block p-0 p-md-2">
             <Container className={appStyles.Content}>{textFields}</Container>
@@ -197,8 +201,9 @@ function PostEditForm() {
                     Edit Image
                   </Form.Label>
                 </div>
-                <Form.File
+                <Form.Control
                   id="image-upload"
+                  type="file"
                   accept="image/*"
                   onChange={handleChangeImage}
                   ref={imageInput}

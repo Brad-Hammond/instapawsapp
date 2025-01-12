@@ -37,8 +37,9 @@ const NavBar = () => {
 
   const createPostIcon = (
     <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
+      className={({ isActive }) =>
+        isActive ? `${styles.NavLink} ${styles.Active}` : styles.NavLink
+      }
       to="/posts/create"
     ></NavLink>
   );
@@ -55,7 +56,12 @@ const NavBar = () => {
         id="nav-dropdown"
       >
         <NavDropdown.Item className={styles.DropdownMenu}>
-          <NavLink to={`/profiles/${currentUser?.profile_id}`}>
+          <NavLink
+            to={`/profiles/${currentUser?.profile_id}`}
+            className={({ isActive }) =>
+              isActive ? `${styles.NavLink} ${styles.Active}` : styles.NavLink
+            }
+          >
             <AiOutlineUser
               className={`${styles.NavbarExpandedIcons} ${styles.ProfileIcon}`}
               size={25}
@@ -64,7 +70,11 @@ const NavBar = () => {
           </NavLink>
         </NavDropdown.Item>
         <NavDropdown.Item className={styles.DropdownMenu}>
-          <NavLink className={styles.LogoutIcon} to="/" onClick={handleLogOut}>
+          <NavLink
+            className={styles.LogoutIcon}
+            to="/"
+            onClick={handleLogOut}
+          >
             <AiOutlineLogout
               className={`${styles.NavbarExpandedIcons} ${styles.LogoutIcon}`}
               size={25}
@@ -79,16 +89,18 @@ const NavBar = () => {
   const unAuthIcons = (
     <>
       <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
+        className={({ isActive }) =>
+          isActive ? `${styles.NavLink} ${styles.Active}` : styles.NavLink
+        }
         to="/login"
       >
         <i className="fa-solid fa-right-to-bracket"></i>
         <span>Log In</span>
       </NavLink>
       <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
+        className={({ isActive }) =>
+          isActive ? `${styles.NavLink} ${styles.Active}` : styles.NavLink
+        }
         to="/signup"
       >
         <i className="fa-solid fa-person-circle-plus"></i>
@@ -96,6 +108,7 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
   return (
     <Navbar
       expanded={expanded}
@@ -121,9 +134,9 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <NavLink
-              exact
-              className={`${styles.NavLink} ${styles.Home}`}
-              activeClassName={styles.Active}
+              className={({ isActive }) =>
+                isActive ? `${styles.NavLink} ${styles.Active}` : styles.NavLink
+              }
               to="/"
             >
               <i className="fa-solid fa-house-chimney-window"></i>

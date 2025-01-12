@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/SignupLogIn.module.css";
 import btnStyles from "../../styles/HomePage.module.css";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { CSSTransition } from "react-transition-group";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -27,6 +27,10 @@ const LogInForm = () => {
   const { username, password } = logInData;
   const [, setCookie] = useCookies(["refreshTokenTimestamp"]);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
+  // Step 1: Create a ref for CSSTransition
+  const nodeRef = useRef(null);
 
   const handleChange = (e) => {
     setLogInData({
@@ -35,7 +39,6 @@ const LogInForm = () => {
     });
   };
 
-  const navigate = useNavigate();
   const setAuthToken = (data) => {
     const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
     setCookie("refreshTokenTimestamp", refreshTokenTimestamp);
@@ -48,7 +51,6 @@ const LogInForm = () => {
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
       setAuthToken(data);
-
       navigate("/");
     } catch (err) {
       if (err.response) {
@@ -67,8 +69,9 @@ const LogInForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Row className={styles.Row}>
+      <Row className={styles.Row} ref={nodeRef}> {/* Step 3: Attach ref to the parent node */}
         <Col className={styles.Col}>
           <Container>
             <h1 className={styles.Header}>

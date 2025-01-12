@@ -9,7 +9,7 @@ import alertStyles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import inputStyles from "../../styles/SignupLogIn.module.css";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { CSSTransition } from "react-transition-group";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -35,6 +35,9 @@ const ProfileEditForm = () => {
   const [showProfileMsg, setProfileMsg] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Step 1: Create a ref for the CSSTransition node
+  const nodeRef = useRef(null);
+
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
@@ -43,10 +46,10 @@ const ProfileEditForm = () => {
           const { name, content, image } = data;
           setProfileData({ name, content, image });
         } catch (err) {
-          navigate.push("/");
+          navigate("/");
         }
       } else {
-        navigate.push("/");
+        navigate("/");
       }
     };
 
@@ -78,7 +81,7 @@ const ProfileEditForm = () => {
       }));
       setProfileMsg(true);
       setTimeout(() => {
-        navigate.goBack();
+        navigate(-1);
       }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
@@ -122,7 +125,7 @@ const ProfileEditForm = () => {
       <Button
         className={`mx-3 ${btnStyles.CancelButton}`}
         onMouseDown={(e) => e.preventDefault()}
-        onClick={() => navigate.goBack()}
+        onClick={() => navigate(-1)}
       >
         Cancel Changes
       </Button>
@@ -135,8 +138,9 @@ const ProfileEditForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
         <Row>
           <Col
             className="d-none d-md-block p-0 p-md-2 text-center"
