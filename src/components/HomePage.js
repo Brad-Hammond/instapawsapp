@@ -76,17 +76,17 @@ const HomePage = () => {
         <footer>
           <div className="text-center">
             <p className={`${styles.ContactIcons} text-white`}>
-              Created by Placeholder Name
+              Created by Bradley Hammond
             </p>
           </div>
           <div className="text-center pb-3">
             <p className={`${styles.ContactIcons} text-white`}>
-              Connect with us:
+              Connect with me:
             </p>
-            <a href="#" aria-label="Placeholder GitHub link" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Brad-Hammond?tab=repositories" aria-label="Check out my Github!" target="_blank" rel="noopener noreferrer">
               <i className={`${styles.ContactIcons} ${styles.GithubIcon} fab fa-github`} />
             </a>
-            <a href="#" aria-label="Placeholder LinkedIn link" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/bradley-hammond-0ba801195/" aria-label="Check out my LinkedIn!" target="_blank" rel="noopener noreferrer">
               <i className={`${styles.ContactIcons} ${styles.LinkedinIcon} fab fa-linkedin`} />
             </a>
           </div>
