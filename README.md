@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+<h1 align="center">InstaPaws - Project Portfolio 5</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## - By Bradley Hammond
 
-## Available Scripts
+### [View Live Website](https://instapaws-f3da7aad813f.herokuapp.com/)
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+- InstaPaws is a community-driven web application designed for dog lovers to share their furry friends with the world. Similar to Instagram, InstaPaws allows users to post photos and engage with others through likes, comments, and follows—all centered around their beloved dogs.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Whether you're showcasing your dog's latest adventure, connecting with fellow pet owners, or simply enjoying wholesome dog-related content, InstaPaws provides a welcoming platform for the dog-loving community to come together.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Goals
 
-### `npm test`
+- The goal of this project was to create a unique and engaging platform centered around dogs, putting a fun twist on a typical social media app. With InstaPaws, I wanted to combine interactive features, vibrant design elements, and a community-driven concept to create a space where dog lovers can connect, share, and celebrate their furry friends. My aim was to make the app feel welcoming, enjoyable, and refreshing for users, fostering a sense of belonging and joy within the dog-loving community.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## User Stories
 
-### `npm run build`
+- Please note the order of these got mixed up so the order does not go chronological order.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Navigation (Project Goal Covered: #1, #2, #6)
+- As a new or returning user, I can see the login and sign-up buttons, allowing me to either access my existing account or create a new one
+- As a user, I can access the homepage to understand the purpose and functionality of the site
+- As a user, I can see the navigation bar at all times, providing easy access to navigate between pages for a seamless user experience
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Authentication (Project Goal Covered: #1, #4, #5)
+- As a new or returning user, I can see the login and sign-up buttons, allowing me to either access my existing account or create a new one
+- As a returning user, I can log into my account to access all features available to logged-in users
+- As a new or returning user, I can create an account to access all features of the website that require login
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Posts (Project Goal Covered: #7, #8, #9, #10, #11)
+- As a user, I can share content on the website, including updates on my furry friend
+- As a user, I can view detailed information about a specific post, allowing me to see all content related to the post
+- As a user, I can use the search bar to filter and find the content I want to see
+- As a user, I can like a post to express my opinion and provide feedback on someone else's content
+- As a user, I can view the tags associated with a post to determine its relevance to my interests
 
-### `npm run eject`
+#### Main feed page (Project Goal Covered: #12, #13)
+- As a user, I can view other profiles to stay updated on their followers, followings, and posts
+- As a user, I can scroll the website continuously, allowing me to view all posts seamlessly without interruption
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Profile Page (Project Goal Covered: #3, #12)
+- As a user I can upload a profile picture so that I can style my profile to make me recognizable
+- As a user I can change my password so that I can keep my profile secure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Design Choices
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Colour Scheme
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- For the design of InstaPaws, I aimed to follow a cohesive and visually appealing color palette to create a vibrant and engaging user experience. The primary colors were selected to reflect the playful and community-driven theme of the app.
 
-## Learn More
+- While I adhered to this color palette as closely as possible, there were instances where adjustments were necessary. In particular, some colors had to be darkened to ensure sufficient contrast for accessibility. This was done to meet accessibility standards and improve the Lighthouse score, ensuring the platform is user-friendly for everyone.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- By prioritizing accessibility, I balanced aesthetics with functionality, creating a design that is both visually appealing and inclusive.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="docs/readme/ColorPallette.jpg" alt="Color palette">
 
-### Code Splitting
+### Animations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+When building this website, I wanted to keep the experience engaging and fun, so I added unique animations to enhance user interaction. Here are the animations implemented:
+- Navbar Fade-In: When loading the page, the navbar smoothly fades in from top to bottom, adding a playful touch for the user.
+- Icon Animations: Hovering over navbar icons triggers a shake animation, while smaller icons have a gentle shake, creating an interactive and intuitive navigation experience.
+- Profile Picture Animation: Hovering over profile pictures applies a gentle shake effect, providing a clear visual cue to the user.
+- "Most Followed" Section Tilt: A slight tilt animation is applied to the "Most Followed" section, highlighting its significance and drawing user attention.
+- "Search by Post Tags" Bounce: Tags in the "Search by Post Tags" section have a subtle bounce-right animation to encourage users to explore tag-based search functionality.
+- Scroll-to-Top Button: The scroll-to-top button bounces gently up and down, providing a visual cue for navigation. It fades in only after the user scrolls down the page.
+- Follow/Unfollow Button Bounce: On the profile page, the "Follow" and "Unfollow" buttons have a slight bounce animation, indicating their functionality to the user.
+- Button Hover Effects: Buttons across the website feature a gentle shake animation when hovered over, enhancing interactivity and making the user experience more engaging.
 
-### Analyzing the Bundle Size
+### Wireframes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- I used [Wireframes.cc ](https://wireframe.cc/) as my preferred wireframing tool for designing the website due to its simplicity and user-friendly interface. While the final design of the website may differ slightly from the wireframes, they served as foundational guidelines to visualize the structure and layout I aimed to achieve. Wireframes were created for both mobile and desktop views to ensure a responsive and consistent user experience across devices.
 
-### Making a Progressive Web App
+#### Homepage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Homepage Desktop Wireframe - [View](/docs/readme/HomepageDesktop.jpg)
+- Homepage Mobile Wireframe - [View](/docs/readme//HomepageMobile.jpg)
 
-### Advanced Configuration
+#### Login/Signup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Login / Signup page Desktop Wireframe - [View](/docs/readme/LoginSignupDesktop.jpg)
+- Login / Signup page Mobile Wireframe - [View](/docs/readme/LoginSignupMobile.jpg)
 
-### Deployment
+#### Home Feed
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Home Feed Desktop Wireframe - [View](/docs/readme/MainPageDesktop.jpg)
+- Home Feed Mobile Wireframe - [View](/docs/readme/MainPageMobile.jpg)
 
-### `npm run build` fails to minify
+#### Post Detail
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Post Detail Desktop Wireframe - [View](/docs/readme/PostDetailDesktop.jpg)
+- Post Detail Mobile Wireframe - [View](/docs/readme/PostDetailMobile.jpg)
+
+#### Create Post
+
+- Create Post Desktop Wireframe - [View](/docs/readme/CreatePostDesktop.jpg)
+- Create Post Mobile Wireframe - [View](/docs/readme/CreatePostMobile.jpg)
+
+#### Profile Detail
+
+- Profile Detail Desktop Wireframe - [View](/docs/readme/ProfileDetailsDesktop.jpg)
+- Profile Detail Mobile Wireframe - [View](/docs/readme/ProfileDetailMobile.jpg)
+
+#### Edit Profile
+
+- Edit Profile Desktop Wireframe - [View](/docs/readme/EditProfileDesktop.jpg)
+- Edit Profile Mobile Wireframe - [View](/docs/readme/EditProfileMobile.jpg)
+
+#### Edit Password
+
+- Edit Password Desktop Wireframe - [View](/docs/readme/EditPasswordDesktop.jpg)
+- Edit Password Mobile Wireframe - [View](/docs/readme/EditPasswordMobile.jpg)
+
+
