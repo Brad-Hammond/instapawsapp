@@ -4,9 +4,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { TbGridDots } from "react-icons/tb";
 import styles from "../styles/DropdownMenu.module.css";
 
-// Custom dropdown toggle component
+
 const DropdownSelect = React.forwardRef(({ onClick }, ref) => (
-  (DropdownSelect.displayName = "DropdownSelect"),
+  (DropdownSelect.displayName = "DropdownSelect")
   (
     <button
       ref={ref}
@@ -14,14 +14,13 @@ const DropdownSelect = React.forwardRef(({ onClick }, ref) => (
         e.preventDefault();
         onClick(e);
       }}
-      className={styles.DropdownToggle} // Updated toggle styling
+      className={styles.DropdownToggle}
     >
       <TbGridDots />
     </button>
   )
 ));
 
-// Dropdown menu component for Edit/Delete functionality
 export const DropdownMenu = ({ handleEdit, handleDelete }) => (
   <Dropdown className={styles.Dropdown} drop="right">
     <Dropdown.Toggle as={DropdownSelect} />
@@ -46,7 +45,6 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => (
   </Dropdown>
 );
 
-// Profile settings dropdown
 export function ProfileEditDropdownMenu({ id }) {
   const navigate = useNavigate();
 
