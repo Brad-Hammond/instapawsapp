@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { fetchMoreData } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
+import {
+  useProfileData,
+  useSetProfileData,
+} from "../../contexts/ProfileDataContext";
 import { axiosReq } from "../../api/axiosDefault";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/ProfilePage.module.css";
@@ -26,6 +29,8 @@ function ProfilePage() {
   const { id } = useParams();
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { profilePage } = useProfileData();
+  const [profile] = profilePage.results;
+  const is_owner = currentUser?.username === profile?.owner;
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
   useEffect(() => {
@@ -49,9 +54,6 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
-  const profile = profilePage.results[0];
-  const is_owner = currentUser?.username === profile?.owner;
-
   const profileDetail = (
     <>
       <Row noGutters className="p-3 text-center">
@@ -66,13 +68,16 @@ function ProfilePage() {
         <Col lg={4}>
           <h3 className="mt-2 mb-4">{profile?.owner}&apos;s profile</h3>
           <p className={styles.UserSocialNumbers}>
-            Posts <span>{profile?.posts_total}</span>
+            Posts
+            <span>{profile?.posts_total}</span>
           </p>
           <p className={styles.UserSocialNumbers}>
-            Followers <span>{profile?.followers_total}</span>
+            Followers
+            <span>{profile?.followers_total}</span>
           </p>
           <p className={styles.UserSocialNumbers}>
-            Following <span>{profile?.following_total}</span>
+            Following
+            <span>{profile?.following_total}</span>
           </p>
         </Col>
         <Col lg={4} className="text-lg-right">
@@ -99,7 +104,7 @@ function ProfilePage() {
       </Row>
     </>
   );
-
+  
   const profileDetailPosts = (
     <>
       <hr />
@@ -128,11 +133,17 @@ function ProfilePage() {
   );
 
   return (
-    <CSSTransition in={true} appear={true} timeout={{ enter: 300 }} classNames="fade">
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={{ enter: 300 }}
+      classNames="fade"
+    >
       <Container>
         <Row>
           <Col className="pt-2 p-0 g-0" lg={3}>
             <Toolbar />
+
             <Container className={`${appStyles.Content} mb-2`}>
               <PopularProfiles />
             </Container>
