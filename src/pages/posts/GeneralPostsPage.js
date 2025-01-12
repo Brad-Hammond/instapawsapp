@@ -67,20 +67,25 @@ function GeneralPostsPage({ message, filter = "" }) {
               <PopularProfiles />
             </Container>
           </Col>
-          <Col className="py-2 p-0 p-lg-2" lg={6}>
-            <CgSearch className={styles.SearchIcon} />
-            <Form
-              className={styles.SearchBar}
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <Form.Control
-                type="text"
-                className="mr-sm-2"
-                placeholder="Search..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </Form>
+          <Col
+            className="py-2 p-0 p-lg-2 d-flex flex-column align-items-center justify-content-start"
+            lg={6}
+          >
+            <div className={styles.SearchContainer}>
+              <CgSearch className={styles.SearchIcon} />
+              <Form
+                className={styles.SearchBar}
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <Form.Control
+                  type="text"
+                  className="mr-sm-2"
+                  placeholder="Search..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </Form>
+            </div>
             {hasLoaded ? (
               <>
                 {posts.results.length ? (
@@ -121,12 +126,13 @@ function GeneralPostsPage({ message, filter = "" }) {
               </Container>
             )}
           </Col>
+
           <Col className="py-2 p-0 p-lg-2" lg={3}>
             <Container
               className={`${appStyles.Content} mb-3 mt-3 d-none d-lg-block`}
             >
               <p className={`${styles.PostTags} font-weight-bold text-center`}>
-              <i className={`${styles.TagIcon} fas fa-tag`} ></i> Search by Post Tags
+                <i className={`${styles.TagIcon} fas fa-tag`}></i> Search by Post Tags
               </p>
               <Badge
                 variant="primary"
