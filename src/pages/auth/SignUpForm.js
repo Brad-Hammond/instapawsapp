@@ -62,6 +62,10 @@ const SignUpForm = () => {
 
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="username">
+                {/* Note added for username */}
+                <p className={`${styles.Note} text-muted`}>
+                  <small>Please choose your username carefully. It cannot be changed later.</small>
+                </p>
                 <Form.Label className="d-none">Username</Form.Label>
                 <Form.Control
                   className={styles.Input}
