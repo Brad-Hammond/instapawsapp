@@ -8,6 +8,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { CSSTransition } from "react-transition-group";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const HomePage = () => {
   const currentUser = useCurrentUser();
@@ -66,9 +68,9 @@ const HomePage = () => {
               className={`${appStyles.Content} ${styles.HomePromptOne} ${styles.HomePrompt}`}
             >
               <div className="p-4">
-                <h2 className="text-center">Lorem ispum</h2>
+                <h2 className="text-center">Share Photos!</h2>
                 <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Share photos of your 4-legged friends with the community!
                 </p>
               </div>
             </Col>
@@ -76,9 +78,9 @@ const HomePage = () => {
               <div
                 className={`${appStyles.Content} ${styles.HomePrompt}`}
               >
-                <h2 className="text-center">Lorem ispum</h2>
+                <h2 className="text-center">Like and Comment!</h2>
                 <p className="m-3 mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Like and comment on photos of other fury friends!
                 </p>
               </div>
             </Col>
@@ -88,9 +90,9 @@ const HomePage = () => {
               className={`${appStyles.Content} ${styles.HomePromptThree} ${styles.HomePrompt}`}
             >
               <div className="p-4">
-                <h2 className="text-center">Lorem ispum</h2>
+                <h2 className="text-center">Join the Community</h2>
                 <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Sign up now and join our amazing community of dog lovers!
                 </p>
               </div>
             </Col>
