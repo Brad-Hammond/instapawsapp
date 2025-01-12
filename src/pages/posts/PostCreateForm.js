@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from "react"; // Added useRef
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -10,7 +10,7 @@ import inputStyles from "../../styles/SignupLogIn.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import formStyles from "../../styles/PostCreateEditForm.module.css";
 import assetStyles from "../../styles/Asset.module.css";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { CSSTransition } from "react-transition-group";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -33,6 +33,9 @@ function PostCreateForm() {
   const { title, tags, content, image } = postData;
   const imageInput = useRef(null);
   const navigate = useNavigate();
+
+  // Step 1: Create a ref for the CSSTransition node
+  const nodeRef = useRef(null);
 
   const handleChange = (e) => {
     setPostData({
@@ -153,8 +156,9 @@ function PostCreateForm() {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
         <Row>
           <Col md={7} lg={8} className="d-none d-md-block p-0 p-md-2">
             <Container className={appStyles.Content}>{textFields}</Container>
