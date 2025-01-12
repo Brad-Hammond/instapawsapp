@@ -49,13 +49,13 @@ export const ProfileDataProvider = ({ children }) => {
         ...prevState,
         profilePage: {
           results: prevState.profilePage.results.map((profile) =>
-            unfollowHelper(profile, clickedProfile)
+            followHelper(profile, clickedProfile)
           ),
         },
         popularProfiles: {
           ...prevState.popularProfiles,
           results: prevState.popularProfiles.results.map((profile) =>
-            unfollowHelper(profile, clickedProfile)
+            followHelper(profile, clickedProfile)
           ),
         },
       }));
@@ -67,7 +67,7 @@ export const ProfileDataProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(
+        const { data } = await axiosRes.get(
           "/profiles/?ordering=-followers_total"
         );
         setProfileData((prevState) => ({
