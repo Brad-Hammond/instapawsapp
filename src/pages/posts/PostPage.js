@@ -31,13 +31,15 @@ function PostPage() {
           axiosReq.get(`/posts/${id}/`),
           axiosReq.get(`/comments/?post=${id}`),
         ]);
+        console.log("Post data:", post);
+        console.log("Comments data:", comments);
         setPost({ results: [post] });
         setComments(comments);
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching post or comments:", err);
       }
     };
-
+  
     handleMount();
   }, [id]);
 
