@@ -57,6 +57,8 @@ axiosRes.interceptors.response.use(
         }
       } catch (refreshError) {
         console.error("Failed to refresh token:", refreshError);
+        // Optional: Redirect to login page
+        window.location.href = "/login";
         return Promise.reject(error);
       }
     }
