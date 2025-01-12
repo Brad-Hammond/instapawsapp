@@ -1,78 +1,80 @@
 .SearchBar input {
-    border-radius: 20px;
-    color: #344E41;
-    padding-left: 50px;
-    margin-bottom: 15px;
+  border-radius: 20px;
+  color: #344e41;
+  padding-left: 50px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+}
+
+.SearchBar input:focus {
+  border-color: rgb(160, 160, 160);
+  box-shadow: 0 0 5px rgba(160, 160, 160, 0.5);
+}
+
+.SearchIcon {
+  position: absolute;
+  color: #3a5a40;
+  font-size: 1.6rem;
+  margin: 1.5%;
+}
+
+.SearchIcon:hover {
+  cursor: pointer;
+  transition: color ease-in-out 0.3s;
+  color: #a3b18a;
+}
+
+.Tags {
+  background-color: #a3b18a !important;
+  color: white !important;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin: 5px;
+  transition: transform 0.2s, background-color 0.3s ease-in-out;
+}
+
+.Tags:hover {
+  background-color: #588157 !important;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.Tags:active {
+  background-color: #3a5a40 !important;
+}
+
+.PostTags {
+  animation: shake 7s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+}
+
+.TagIcon {
+  color: #a3b18a;
+}
+
+.TagIcon:hover {
+  cursor: default;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(-1px);
   }
-  
-  .SearchBar input:focus {
-    border-color: rgb(160, 160, 160);
-    box-shadow: 0 0 0 0.2rem white;
+  20%, 80% {
+    transform: translateX(1px);
   }
-  
-  .SearchIcon {
-    position: absolute;
-    color: #3A5A40;
-    font-size: 1.6rem;
-    margin: 1.5%;
+  30%, 50%, 70% {
+    transform: translateX(-1px);
   }
-  
-  .SearchIcon:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #A3B18A;
+  40%, 60% {
+    transform: translateX(1px);
   }
-  
-  .Tags {
-    background-color: #A3B18A;
-    cursor: pointer;
-    padding: 5px 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  div span img {
+    height: 40px;
+    width: 40px;
   }
-  
-  .Tags:hover {
-    background-color: #588157;
-    cursor: pointer;
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .Tags span:active {
-    background-color: #3A5A40;
-    cursor: pointer;
-    animation: ease-in-out 0.5s;
-  }
-  
-  .PostTags {
-    animation: shake 7s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
-  }
-  
-  .TagIcon {
-    color: #A3B18A;
-  }
-  
-  .TagIcon:hover {
-    cursor: default;
-  }
-  
-  @keyframes shake {
-    10%, 90% {
-      transform: translateX(-1px);
-    }
-    20%, 80% {
-      transform: translateX(1px);
-    }
-    30%, 50%, 70% {
-      transform: translateX(-1px);
-    }
-    40%, 60% {
-      transform: translateX(1px);
-    }
-  }
-  
-  @media only screen and (max-width: 767px) {
-    div span img {
-      height: 40px;
-      width: 40px;
-    }
-  }
-  
+}
