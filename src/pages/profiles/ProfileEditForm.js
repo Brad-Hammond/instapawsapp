@@ -23,14 +23,19 @@ const ProfileEditForm = () => {
   const imageFile = useRef();
   const nodeRef = useRef(null);
 
+  // Initial profile data for bio and image
   const [profileData, setProfileData] = useState({
-    name: "",
     content: "",
     image: "",
   });
-  const { name, content, image } = profileData;
+  const { content, image } = profileData;
+
   const [showProfileMsg, setProfileMsg] = useState(false);
   const [errors, setErrors] = useState({});
+  const [initialData, setInitialData] = useState({
+    content: "",
+    image: "",
+  });
 
   useEffect(() => {
     if (image && typeof image === "string" && image.startsWith("blob:")) {
@@ -43,8 +48,9 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { content = "", image = "" } = data; // Default to empty strings
+          setProfileData({ content, image });
+          setInitialData({ content, image }); // Save initial data for comparison
         } catch (err) {
           console.error(err.response?.data || "Failed to fetch profile data.");
           navigate("/");
@@ -59,50 +65,42 @@ const ProfileEditForm = () => {
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value || "", // Update profileData
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form submitted!");
-  
+
     const formData = new FormData();
-    formData.append("name", name);
     formData.append("content", content);
-  
+
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
     }
-  
-    console.log("FormData to send:", [...formData.entries()]);
-  
+
     try {
-      console.log("Sending API request...");
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
-      console.log("API Response:", data);
-  
       setCurrentUser((prevUser) => ({
         ...prevUser,
-        profile_image: data.image,
+        profile_image: data.image, // Update profile image in currentUser context
       }));
-      setProfileMsg(true);
+      setProfileMsg(true); // Show success message
       setTimeout(() => navigate(-1), 2000);
     } catch (err) {
       console.error("Error during API call:", err.response?.data || err.message);
       setErrors(err.response?.data || {});
     }
   };
-  
 
   const textFields = (
     <>
+      {showProfileMsg && <div className="alert alert-info">Profile updated!</div>}
       <Form.Group>
-        {showProfileMsg && <div className="alert alert-info">Profile updated!</div>}
         <Form.Label className="font-weight-bold">My Profile Bio:</Form.Label>
         <Form.Control
           as="textarea"
-          value={content}
+          value={content || ""} // Pre-fill bio content
           onChange={handleChange}
           name="content"
           rows={7}
@@ -114,10 +112,16 @@ const ProfileEditForm = () => {
           {message}
         </Alert>
       ))}
+
       <Button
         className={`my-3 ${btnStyles.Button}`}
         type="submit"
-        disabled={!name.trim() || !content.trim()}
+        disabled={
+          !(
+            content?.trim() !== initialData.content || 
+            image !== initialData.image
+          )
+        }
       >
         Save Changes
       </Button>
@@ -144,10 +148,7 @@ const ProfileEditForm = () => {
                     </figure>
                   )}
                   <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} btn`}
-                      htmlFor="image-upload"
-                    >
+                    <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
                       Change Avatar
                     </Form.Label>
                   </div>
@@ -161,7 +162,7 @@ const ProfileEditForm = () => {
                       if (e.target.files.length) {
                         setProfileData({
                           ...profileData,
-                          image: URL.createObjectURL(e.target.files[0]),
+                          image: URL.createObjectURL(e.target.files[0]) || "",
                         });
                       }
                     }}
