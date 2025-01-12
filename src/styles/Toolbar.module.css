@@ -1,34 +1,45 @@
 .ToolbarPlacement {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .Icon {
-    color: #344e41;
-    vertical-align: middle;
-    font-size: 25px;
-  }
-  
-  .Icon:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #4c23e8;
-    font-weight: 600;
-  }
-  
-  .HeartIcon {
-    color: rgba(224, 0, 0, 0.842);
-  }
-  
-  .CreatePostIcon {
-    color: rgba(0, 126, 126, 0.781);
-  }
-  
-  .MyFeedIcon {
-    color: rgba(18, 5, 199, 0.767);
-  }
-  
-  .ActivePath a.active {
-    color: #4c23e8;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #DAD7CD;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.ToolbarLink {
+  text-decoration: none;
+  color: #3A5A40;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease-in-out;
+}
+
+.Icon {
+  font-size: 25px;
+  color: #3A5A40;
+}
+
+.ToolbarLink:hover {
+  color: #3A5A40;
+  font-weight: 600;
+}
+
+.HeartIcon {
+  color: rgba(224, 0, 0, 0.842);
+}
+
+.CreatePostIcon {
+  color: rgba(0, 126, 126, 0.781);
+}
+
+.ActivePath {
+  color: #4c23e8;
+  font-weight: 700;
+}
