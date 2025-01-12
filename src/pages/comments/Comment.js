@@ -32,21 +32,31 @@ const Comment = (props) => {
     setTimeout(async () => {
       try {
         await axiosRes.delete(`/comments/${id}/`);
-        setPost((prevPost) => ({
-          results: [
-            {
-              ...prevPost.results[0],
-              comments_total: prevPost.results[0].comments_total - 1,
-            },
-          ],
-        }));
-
+        
+        // Safely update the post's comments_total
+        setPost((prevPost) => {
+          if (!prevPost || !prevPost.results || !prevPost.results[0]) {
+            console.error("Post data is missing or invalid.");
+            return prevPost;
+          }
+  
+          const updatedPost = {
+            ...prevPost.results[0],
+            comments_total: Math.max((prevPost.results[0].comments_total || 0) - 1, 0),
+          };
+  
+          return {
+            results: [updatedPost],
+          };
+        });
+  
+        // Safely remove the deleted comment from the comments list
         setComments((prevComments) => ({
           ...prevComments,
-          results: prevComments.results.filter((comment) => comment.id !== id),
+          results: prevComments?.results?.filter((comment) => comment.id !== id) || [],
         }));
       } catch (err) {
-        console.error(err);
+        console.error("Failed to delete the comment:", err);
       }
     }, 2000);
   };
