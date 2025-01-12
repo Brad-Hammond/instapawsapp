@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react"; // Added useRef
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/GeneralPostPage.module.css";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { CSSTransition } from "react-transition-group";
 import { CgSearch } from "react-icons/cg";
 import Badge from "react-bootstrap/Badge";
 import Col from "react-bootstrap/Col";
@@ -27,6 +27,9 @@ function GeneralPostsPage({ message, filter = "" }) {
 
   const currentUser = useCurrentUser();
   const [query, setQuery] = useState("");
+
+  // Step 1: Create a ref for the CSSTransition node
+  const nodeRef = useRef(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -58,8 +61,9 @@ function GeneralPostsPage({ message, filter = "" }) {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
+      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
     >
-      <Container>
+      <Container ref={nodeRef}> {/* Step 3: Attach ref to the DOM node */}
         <Row>
           <Col className="py-2 p-0 p-lg-2" lg={3}>
             <Toolbar />
@@ -132,7 +136,8 @@ function GeneralPostsPage({ message, filter = "" }) {
               className={`${appStyles.Content} mb-3 mt-3 d-none d-lg-block`}
             >
               <p className={`${styles.PostTags} font-weight-bold text-center`}>
-                <i className={`${styles.TagIcon} fas fa-tag`}></i> Search by Post Tags
+                <i className={`${styles.TagIcon} fas fa-tag`}></i> Search by
+                Post Tags
               </p>
               <Badge
                 variant="primary"
