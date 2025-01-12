@@ -1,6 +1,6 @@
 .App {
   font-family: "Varela Round", sans-serif;
-  color: #414048;
+  color: #344e41;
   background-color: #DAD7CD;
   min-height: 100vh;
 }
@@ -22,7 +22,7 @@
 }
 
 a {
-  color: #414048;
+  color: #344e41;
   transition: color ease-in-out 0.3s;
 }
 
@@ -37,7 +37,7 @@ a:hover i {
 }
 
 span {
-  color: #414048;
+  color: #344e41;
 }
 
 a:hover span,
@@ -49,7 +49,7 @@ button:hover {
 }
 
 i {
-  color: #414048; /* Updated icon color */
+  color: #344e41; /* Updated icon color */
   font-size: 1.6rem;
   padding: 7px;
   vertical-align: middle;
