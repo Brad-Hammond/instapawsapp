@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import appStyles from "../../App.module.css";
-import styles from "../../styles/GeneralPostsPage.module.css";
+import styles from "../../styles/GeneralPostPage.module.css";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { CgSearch } from "react-icons/cg";
 import Badge from "react-bootstrap/Badge";
