@@ -1,21 +1,82 @@
+/* Dropdown Toggle Styling */
+.DropdownToggle {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background-color: #fff;
+  position: relative; /* Helps with alignment */
+}
+
+/* Dropdown Item Styling */
 .DropdownItem {
-    display: inline-block;
-    max-width: 35%;
-    padding: 0px;
-    color: #344e41;
-  }
-  
-  .DropdownItem:hover {
-    color: orange;
-  }
-  
-  .DropdownPosition {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-  }
-  
-  .DropdownItem i {
-    color: orange;
-  }
-  
+  display: block;
+  padding: 10px 15px;
+  color: #344e41;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #fff;
+  text-align: left;
+}
+
+.DropdownItem:hover {
+  color: orange;
+  background-color: #f9f9f9;
+}
+
+/* Dropdown Menu Positioning */
+.DropdownPosition {
+  position: absolute;
+  top: calc(100% + 8px); /* Dropdown appears below toggle */
+  right: 0;
+  z-index: 99;
+  min-width: 180px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Centralize Dropdown Container */
+.Dropdown {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+}
+
+/* Profile Header Styling */
+.ProfileHeader {
+  display: flex;
+  flex-direction: column; /* Align elements vertically */
+  align-items: center; /* Centers all elements horizontally */
+  text-align: center;
+  margin: 20px 0; /* Add spacing around header */
+}
+
+/* Avatar Image */
+.AvatarImage {
+  width: 64px; /* Larger avatar size */
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: 10px; /* Add spacing below avatar */
+}
+
+/* Username Styling */
+.ProfileUsername {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px; /* Add spacing below username */
+}
+
+/* Profile Stats */
+.ProfileStats {
+  display: flex;
+  gap: 20px; /* Add spacing between stats */
+  justify-content: center; /* Centers stats horizontally */
+  margin-bottom: 20px;
+}
