@@ -9,6 +9,7 @@
     "classnames": "^2.5.1",
     "cra-template": "1.2.0",
     "jwt-decode": "^4.0.0",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.7",
     "react-cookie": "^7.2.2",
@@ -47,6 +48,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.3",
+    "globals": "^15.14.0"
   }
 }
