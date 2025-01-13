@@ -151,8 +151,8 @@ When building this website, I wanted to keep the experience engaging and fun, so
 - [GitHub](https://github.com/) was used as a remote repository to store project code
 - [Font Awesome](https://fontawesome.com/) - icons from Font Awesome were used on my website
 - [React Icons](https://react-icons.github.io/react-icons/search) - icons from react-icons were used on my website
-- [React Spinners](https://www.davidhu.io/react-spinners/) - spinner came from this website and I changed the coloir
-- [React Spinners](https://www.davidhu.io/react-spinners/) - spinner came from this website and I changed the coloir
+- [React Spinners](https://www.davidhu.io/react-spinners/) - spinner came from this website and I changed the color
+- [React Spinners](https://www.davidhu.io/react-spinners/) - spinner came from this website and I changed the color
 - [Visual Studio Code](https://code.visualstudio.com/) - Was my chosen workspace to code this project
 - [Heroku](https://dashboard.heroku.com/apps) was used to deploy my code live
 - [ESLint](https://eslint.org/) used to validate JSX code
@@ -839,7 +839,7 @@ Go to the general post page| You will be able to scroll for an infinite amount o
 
 **Action** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
-Go to the chaneg password page| You will be able to amend your password| Works as expected |
+Go to the change password page| You will be able to amend your password| Works as expected |
 
 <details><summary>Change Password Screenshot</summary>
 <img src="docs/screenshots/EditPasswordFormSS.jpg">
@@ -867,30 +867,30 @@ Testing has been carried out on the following browsers:
 
 ## Bugs
 
-- I had a bug where when the user created tried to amend either passowrd, profile or post that it woudl not redirect them correctly. To fix this I implemented the below code imt he image: 
+- I had a bug where when the user created tried to amend either passowrd, profile or post that it would not redirect them correctly. To fix this I implemented the below code in the image: 
 
 <details><summary>Bug Fix Screenshot</summary>
 <img src="docs/screenshots/BugForRedirect.jpg">
 </details>
 
-- I had a bug where i was using useHistory in alot of my files when importing react-router-dom, however this was remvoed with a new update so had to swtich to useNavigate.
+- I had a bug where i was using useHistory in alot of my files when importing react-router-dom, however this was removed with a new update so had to swtich to useNavigate.
 
 ## Known Bugs
 
 - On the signup page, a 401 (Unauthorized) error appears in the terminal.
-- I have searched for a fix for this however due to time constraints I was unable to find a fix intime.
+- I have searched for a fix for this however due to time constraints I was unable to find a fix in time.
 
 <details><summary>Bug Screenshot</summary>
 <img src="docs/screenshots/BugSignUp.jpg">
 </details>
 
-- Another bug I had was with editing a users username, I could not get it to work as intended and duer to time constraints - I implemented the below on the signup page:
+- Another bug I had was with editing a users username, I could not get it to work as intended and due to time constraints - I implemented the below on the signup page:
 
 <details><summary>Bug Screenshot</summary>
 <img src="docs/screenshots/SingupBugNote.jpg">
 </details>
 
-- Another bug I had was witht he sizing of the no post found image, I could not get it to fit properly and unfourtunatley due to time constraints had to leave it in production.
+- Another bug I had was witht he sizing of the no post found image, I could not get it to fit properly and unfortunately due to time constraints had to leave it in production.
 
 <details><summary>Bug Screenshot</summary>
 <img src="docs/screenshots/PostCreateForm.jpg">
