@@ -28,6 +28,7 @@ const HomePage = () => {
           style={{ backgroundColor: "#A3B18A", color: "white" }}
         >
           <Col>
+          <div className={styles.HomeContainer}>
             <h1 className={styles.HomeTitle}>Welcome to InstaPaws</h1>
             <p className={`${styles.HomeDescription} lead`}>
               Join our community and share your dog&apos;s journey.
@@ -56,6 +57,7 @@ const HomePage = () => {
                 </NavLink>
               </p>
             )}
+          </div>
           </Col>
         </Row>
 
@@ -100,12 +102,12 @@ const HomePage = () => {
 
         <footer>
           <div className="text-center">
-            <p className={`${styles.ContactIcons} text-white`}>
+            <p className={`${styles.ContactIcons}`}>
               Created by Bradley Hammond
             </p>
           </div>
           <div className="text-center pb-3">
-            <p className={`${styles.ContactIcons} text-white`}>
+            <p className={`${styles.ContactIcons}`}>
               Connect with me:
             </p>
             <a
