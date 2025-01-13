@@ -669,4 +669,331 @@ I used the W3C Jigsaw CSS Validation Service to ensure the CSS used in my websit
 <img src="docs/cssTesting/Toolbar.module.jpg"> 
 </details> 
 
+### JSX
+I have used ESLint to validate my JSX code.
 
+- I managed to fix the majarity of the errors, however there were 6 remaining which I did not know how to fix.
+- You can see these in the below image:
+
+<img src="docs/cssTesting/Toolbar.module.jpg" alt="ESLing errors"> 
+
+### Lighthouse Report 
+
+- Lighthouse was utilized to evaluate the site's performance, accessibility, best practices, and SEO. The assessment was conducted for both desktop and mobile platforms.
+
+#### Desktop
+
+<details><summary>Home page</summary> 
+<img src="docs/testing/HomepageDesktop.jpg"> 
+</details> 
+
+<details><summary>General Posts page</summary> 
+<img src="docs/testing/GeneralPageMobile.jpg"> 
+</details> 
+
+#### Mobile Report
+
+<details><summary>Home page</summary> 
+<img src="docs/testing/HomepageMobile.jpgG"> 
+</details> 
+
+<details><summary>General Posts page</summary> 
+<img src="docs/testing/GeneralPageMobile.jpg"> 
+</details>
+
+### Manual testing - User stories
+
+1. As a new or returning user, I can see the login and sign-up buttons, allowing me to either access my existing account or create a new one.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Go to https://instapaws-f3da7aad813f.herokuapp.com/ | Home Page shows easy to see login and signup buttons as well as the nav bar.| Works as expected |
+
+<details><summary>Home Page Screenshot</summary>
+<img src="docs/screenshots/HomepageLoggedOut.jpg">
+</details>
+
+2. As a user, I can access the homepage to understand the purpose and functionality of the site.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Go to https://instapaws-f3da7aad813f.herokuapp.com/ | The Home Page highlights the site's purpose and its uses.| Works as expected |
+
+<details><summary>Home Page Screenshot</summary>
+<img src="docs/screenshots/HomepageLoggedOut.jpg">
+</details>
+
+3. As a user I can upload a profile picture so that I can style my profile to make me recognizable.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Log in to your account and go to my profile screen | Edit profile from the dropdown and change upload your profile picture.| Works as expected |
+
+<details><summary>Edit Profile Screenshot</summary>
+<img src="docs/screenshots/PostEditForm.jpg">
+</details>
+
+4. As a new or returning user, I can create an account to access all features of the website that require login.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Press the signup button | Once signed up you can access all features of the site.| Works as expected |
+
+<details><summary>Signup Screenshot</summary>
+<img src="docs/screenshots/SignUpImageSS.jpg">
+</details>
+
+5. As a returning user, I can log into my account to access all features available to logged-in users.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Press the login button | Once logged in you can access all features of the site.| Works as expected |
+
+<details><summary>Login Screenshot</summary>
+<img src="docs/screenshots/LogInImageSS.jpg">
+</details>
+
+6. As a user, I can see the navigation bar at all times, providing easy access to navigate between pages for a seamless user experience.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Once on the site (logged in or out) | The navigation is fully visible at all times| Works as expected |
+
+<details><summary>NavBar Screenshot</summary>
+<img src="docs/screenshots/NavBarLoggedIn.jpg">
+<img src="docs/screenshots/NavBarLoggedOut.jpg">
+</details>
+
+7. As a user, I can share content on the website, including updates on my furry friend.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Login and press the create post button | This is where users can create posts| Works as expected |
+
+<details><summary>Post Screenshot</summary>
+<img src="docs/screenshots/PostCreateForm.jpg">
+</details>
+
+8. As a user, I can view detailed information about a specific post, allowing me to see all content related to the post.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Press on the post you want to see | This page shows all the comments and like information| Works as expected |
+
+<details><summary>Post Detail Screenshot</summary>
+<img src="docs/screenshots/PostPageSS.jpg">
+<img src="docs/screenshots/CommentSectionSS.jpg">
+</details>
+
+9. As a user, I can use the search bar to filter and find the content I want to see.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Use the search bar on the homepage to search for a post | Related posts to your search will be shown| Works as expected |
+
+<details><summary>Search Bar Screenshot</summary>
+<img src="docs/screenshots/SearchBarSS.jpg">
+</details>
+
+10. As a user, I can like a post to express my opinion and provide feedback on someone else's content.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Press the heart on a post you like | This will like the post| Works as expected |
+
+<details><summary>Likes Screenshot</summary>
+<img src="docs/screenshots/LikesSS.jpg">
+</details>
+
+11. As a user, I can view the tags associated with a post to determine its relevance to my interests.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Press on the tags you want to see related posts of| This will sonly show you posts with those tags| Works as expected |
+
+<details><summary>Tags Screenshot</summary>
+<img src="docs/screenshots/TagsSS.jpg">
+</details>
+
+12. As a user, I can view other profiles to stay updated on their followers, followings, and posts.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Press the profile of another user| This will show you their profile and its details| Works as expected |
+
+<details><summary>Profile Detial Screenshot</summary>
+<img src="docs/screenshots/ProfilePageSS.jpg">
+</details>
+
+13. As a user, I can scroll the website continuously, allowing me to view all posts seamlessly without interruption.
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Go to the general post page| You will be able to scroll for an infinite amount of time| Works as expected |
+
+<details><summary>Infinite Scroll Screenshot</summary>
+<img src="docs/screenshots/GeneralPostPage.jpg">
+</details>
+
+14. As a user I can change my password so that I can keep my profile secure
+
+**Action** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Go to the chaneg password page| You will be able to amend your password| Works as expected |
+
+<details><summary>Change Password Screenshot</summary>
+<img src="docs/screenshots/EditPasswordFormSS.jpg">
+</details>
+
+### Performing Tests
+
+- I developed and tested this website using Google Chrome Developer Tools, enabling me to evaluate specific breakpoints for various screen sizes.
+
+### Device Testing
+
+I tested this website using:
+- Samsung Galaxy S24 (mobile)
+- My Windows PC (desktop)
+- IPhone 14 (mobile)
+- IPad (tablet)
+
+### Browers Testing
+
+Testing has been carried out on the following browsers:
+- Googe Chrome
+- Firefox
+- Microsoft Edge
+- IOS
+
+## Bugs
+
+- I had a bug where when the user created tried to amend either passowrd, profile or post that it woudl not redirect them correctly. To fix this I implemented the below code imt he image: 
+
+<details><summary>Bug Fix Screenshot</summary>
+<img src="docs/screenshots/BugForRedirect.jpg">
+</details>
+
+- I had a bug where i was using useHistory in alot of my files when importing react-router-dom, however this was remvoed with a new update so had to swtich to useNavigate.
+
+## Known Bugs
+
+- On the signup page, a 401 (Unauthorized) error appears in the terminal.
+- I have searched for a fix for this however due to time constraints I was unable to find a fix intime.
+
+<details><summary>Bug Screenshot</summary>
+<img src="docs/screenshots/BugSignUp.jpg">
+</details>
+
+- Another bug I had was with editing a users username, I could not get it to work as intended and duer to time constraints - I implemented the below on the signup page:
+
+<details><summary>Bug Screenshot</summary>
+<img src="docs/screenshots/SingupBugNote.jpg">
+</details>
+
+- Another bug I had was witht he sizing of the no post found image, I could not get it to fit properly and unfourtunatley due to time constraints had to leave it in production.
+
+<details><summary>Bug Screenshot</summary>
+<img src="docs/screenshots/PostCreateForm.jpg">
+</details>
+
+## Configuring this App
+
+### Heroku Deployment
+
+To deploy this project, I have used Heroku.
+These are the steps used for deployment to Heroku:
+
+1. Head over to heroku to create new app and click "New" on the top right, select create new app.
+
+2. You should be displayed with a page named "Create New App", enter your chosen app name and region closest to you here.
+
+3. Once created, go to the new page for your heroku project, and click on the "Deploy" tab- then click on GitHub in the "Deployment Method" section. Once clicked, type in your GitHub repository name and click "Connect".
+
+4. You can then click on the black button named "Deploy Branch". This will build and deploy your project using heroku.
+
+Make sure you have a `Procfile` with this line of code in it `web: serve -s build` to configure your dynos.
+
+5. An "Open App" button will apear on the top right, click it to open your newly deployed project.
+
+Your repository is now deployed to heroku! 
+
+### Cloudinary
+
+To store static files within this app, I used Cloudinary as a media library to allow me to get and post images. In order to use Cloudinary, first:
+
+1. Create a Cloudinary account by linking your GitHub Profile.
+
+2. Navigate to "Dashboard" on the left
+
+3. Use this API Environment variable to serve the static files within the `settings.py` file in your chosen API repository.
+
+4. Add these lines of code to your `settings.py` file:
+`CLOUDINARY_STORAGE = {'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')}`
+`MEDIA_URL = '/media/'`
+`DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'`
+
+5. Make sure that you create and `env.py` file to store your hidden environment variables, and define the `CLOUDINARY_URL` here:
+`os.environ['CLOUDINARY_URL'] = 'cloudinary://yourcloudinaryurlhere...'`
+
+6. Make sure all related cloudinary packages are installed in your API `requirements.txt` (can be found [here](https://www.npmjs.com/package/cloudinary))
+
+## ElephantSQL
+
+In order to host my backend database, I had to use ElephantSQL to allow me to manage administrative tasks of PostgreSQL. [Here](https://www.elephantsql.com/docs/#:~:text=It%20is%20easy%20to%20get,press%20the%20Log%20in%20button.) is a brilliant guide to get you setup.
+
+- Once you have setup your ElephantSQL database, you must go into your backend `env.py` file, and set `os.environ.setdefault("DATABASE_URL", "postgres://yourelephantsqlurlhere...")` to your given URL.
+
+### Forking the GitHub Repository
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Brad-Hammond/instapawsapp)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Brad-Hammond/instapawsapp)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+```
+$ git clone https://github.com/Brad-Hammond/instapawsapp
+```
+
+7. Press Enter. Your local clone will be created.
+
+```
+$ git clone https://github.com/Brad-Hammond/instapawsapp
+> Cloning into `instapaws-app-clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+
+Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
+
+## Credits
+
+### Image Credits
+
+- Icon upload image from [here](https://www.flaticon.com/free-icon/upload_8045653?term=upload&page=1&position=91&origin=tag&related_id=8045653)
+- All placeholder posts and profile pictures were taken from [here](https://www.pexels.com/)
+
+### Style Credits and Inspirations
+
+- Icon shake animations (edited) [here](https://unused-css.com/blog/css-shake-animation/) 
+- Box shadow inspirations [here](https://getcssscan.com/css-box-shadow-examples)
+- Inspiration of bounce animations [here](https://stackoverflow.com/questions/29005916/make-button-bounce-with-css3)
+
+### Code Inspirations
+
+- This project was inspired by the [‘Moments’](https://github.com/Code-Institute-Solutions/moments) social media website, which served as my final walk-through project with Code Institute. I have implemented my own styles, animations, and functionalities, allowing users to search for posts using tags assigned to any created content. Further enhancements to this website are outlined in the 'Improvements' section.
+
+### Please Note
+
+- Please note I was not assigned a mentor for this project, so my portfolio project 5 was done without the help of a mentor.
