@@ -14,6 +14,25 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+/*
+  ProfileEditForm Component
+  --------------------------
+  - Allows users to edit their profile bio and avatar.
+
+  Features:
+  - Fetches the user's profile data on mount, including bio and avatar.
+  - Checks if the logged-in user matches the profile being edited, redirecting otherwise.
+  - Manages form state (`profileData`) for bio (`content`) and avatar (`image`).
+  - Handles avatar preview with a file input and `URL.createObjectURL`.
+  - Submits updated profile data to the API using `FormData`, including text and image fields.
+  - Shows a success message on successful updates and redirects after a short delay.
+  - Prevents submission unless there are changes to the bio or avatar.
+  - Includes a responsive layout:
+    1. Bio and image input split into two columns on larger screens.
+    2. Single-column layout for smaller screens.
+  - Styled with custom classes (`inputStyles`, `btnStyles`, and `appStyles`).
+  - Displays error messages dynamically for invalid fields.
+*/
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();

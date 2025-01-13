@@ -13,6 +13,22 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+/*
+  SignUpForm Component
+  ---------------------
+  - Renders a form for users to create a new account on the application.
+
+  Features:
+  - Manages form inputs (`username`, `password1`, `password2`) using local state.
+  - Handles form submission:
+    1. Sends signup data to the API.
+    2. Redirects to the login page upon successful registration.
+    3. Displays error messages dynamically for invalid fields or general issues.
+  - Implements smooth fade-in animation using `CSSTransition` with a `nodeRef`.
+  - Includes a note for users about the immutability of the username.
+  - Provides a link for users to navigate to the login page if they already have an account.
+  - Styled with custom classes (`styles` and `btnStyles`) and includes an image for visual appeal.
+*/
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
@@ -25,7 +41,6 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // Step 1: Create a ref for the CSSTransition node
   const nodeRef = useRef(null);
 
   const handleChange = (e) => {
@@ -39,7 +54,7 @@ const SignUpForm = () => {
     e.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      navigate("/login"); // Navigate to the login page after successful signup
+      navigate("/login");
     } catch (err) {
       setErrors(err.response?.data || {});
     }
@@ -51,9 +66,9 @@ const SignUpForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Row className={styles.Row} ref={nodeRef}> {/* Step 3: Attach ref to the parent node */}
+      <Row className={styles.Row} ref={nodeRef}>
         <Col className={`${styles.Col} text-center`}>
           <Container>
             <h1 className={styles.Header}>

@@ -15,6 +15,22 @@ import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
+/*
+  LogInForm Component
+  --------------------
+  - Renders a login form for users to authenticate and access the application.
+
+  Features:
+  - Manages user input using `logInData` state for username and password fields.
+  - Handles form submission with `handleSubmit`:
+    1. Sends login data to the API.
+    2. Sets the current user in context and cookies for authentication tokens.
+    3. Redirects to the homepage on success or displays error messages on failure.
+  - Implements smooth fade-in animation using `CSSTransition` and a `nodeRef`.
+  - Displays error alerts dynamically for specific fields or general issues.
+  - Includes a link to the signup page and an image for visual appeal.
+  - Styled with custom classes (`styles` and `btnStyles`) for layout and design.
+*/
 
 const LogInForm = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -29,7 +45,6 @@ const LogInForm = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // Step 1: Create a ref for CSSTransition
   const nodeRef = useRef(null);
 
   const handleChange = (e) => {
@@ -69,9 +84,9 @@ const LogInForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Row className={styles.Row} ref={nodeRef}> {/* Step 3: Attach ref to the parent node */}
+      <Row className={styles.Row} ref={nodeRef}>
         <Col className={styles.Col}>
           <Container>
             <h1 className={styles.Header}>

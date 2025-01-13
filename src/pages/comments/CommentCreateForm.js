@@ -7,6 +7,29 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Avatar from "../../components/Avatar";
+/*
+  CommentCreateForm Component
+  ----------------------------
+  - Allows users to create a new comment for a post.
+
+  Props:
+  - profileImage: URL of the user's profile image.
+  - profile_id: Unique identifier of the user's profile.
+  - post: ID of the post being commented on.
+  - setPost: Function to update the parent post's data.
+  - setComments: Function to update the comments list.
+
+  Features:
+  - Manages input state for the comment text using `comment_info`.
+  - Handles form submission:
+    1. Sends the comment data to the API.
+    2. Updates the comments list and the parent post's `comments_total` count safely.
+    3. Clears the input field after successful submission.
+  - Disables the submit button when the input field is empty.
+  - Includes an avatar linked to the user's profile.
+  - Styled using `styles.CommentEntryForm` and `styles.CommentButton`.
+  - Validates props with `PropTypes` for type safety.
+*/
 
 function CommentCreateForm({ profileImage, profile_id, post, setPost, setComments }) {
   const [comment_info, setCommentInfo] = useState("");

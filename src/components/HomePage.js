@@ -10,6 +10,18 @@ import Container from "react-bootstrap/Container";
 import { CSSTransition } from "react-transition-group";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+/*
+  HomePage Component
+  -------------------
+  - Displays the main landing page for InstaPaws with welcome messages and key features.
+  - Includes animations using `CSSTransition` for a fade-in effect on load.
+  - Showcases:
+    1. Sign-up/Login options (if no current user).
+    2. Prompts highlighting features: sharing photos, engaging with others, and joining the community.
+  - Footer includes links to the creator's GitHub and LinkedIn profiles.
+  - Utilizes responsive layout with Bootstrap `Container`, `Row`, and `Col` components.
+*/
+
 const HomePage = () => {
   const currentUser = useCurrentUser();
   const nodeRef = useRef(null); // Create a ref for the CSSTransition node

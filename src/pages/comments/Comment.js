@@ -9,6 +9,27 @@ import { DropdownMenu } from "../../components/DropdownMenu";
 import CommentEditForm from "./CommentEditForm";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
 import Card from "react-bootstrap/Card";
+/*
+  Comment Component
+  ------------------
+  - Displays individual comments within a post and provides options to edit or delete for the comment owner.
+
+  Props:
+  - profile_id, profile_image, owner, updated_at, comment_info: Data related to the comment and its author.
+  - id: Unique identifier for the comment.
+  - setPost: Function to update the parent post's data.
+  - setComments: Function to update the comments list.
+
+  Features:
+  - Allows comment owners to:
+    1. Edit their comments using the `CommentEditForm`.
+    2. Delete their comments with `handleDelete`, updating the parent post and comments list.
+  - Shows a feedback cue (`UserFeedbackCue`) when a comment is edited or deleted.
+  - Handles the "deleted" state with a delay for smoother UX.
+  - Displays an avatar linked to the author's profile and the comment's timestamp.
+  - Dynamically manages state for showing edit form, deletion, and feedback cues.
+  - Styled using `styles.CommentCard` and related classes for layout and design.
+*/
 
 const Comment = ({
   profile_id,

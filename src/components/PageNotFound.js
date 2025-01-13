@@ -8,6 +8,18 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
+/*
+  PageNotFound Component
+  -----------------------
+  - Displays a custom 404 error page when a user navigates to a non-existent route.
+
+  Features:
+  - Shows an image and a message indicating the user is lost.
+  - Includes a button to navigate back to the homepage using a `Link` component.
+  - Utilizes Bootstrap's `Row`, `Col`, and `Container` for layout and styling.
+  - Custom styles applied via `appStyles.Content` and `styles.PageNotFoundImage`.
+  - Uses a placeholder image hosted on Cloudinary for the 404 page visual.
+*/
 
 const PageNotFound = () => {
   return (

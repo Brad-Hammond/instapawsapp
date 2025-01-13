@@ -15,6 +15,29 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { axiosReq } from "../../api/axiosDefault";
 import { CSSTransition } from "react-transition-group";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
+/*
+  Post Component
+  ---------------
+  - Displays a single post with options for viewing, editing, deleting, liking, and unliking.
+
+  Props:
+  - id, title, image, content: Basic details of the post.
+  - owner, profile_id, profile_image: Information about the post's creator.
+  - postPage: Indicates if the component is rendered on a standalone post page.
+  - likes_total, like_id: Data for tracking and toggling likes.
+  - comments_total: Total number of comments on the post.
+  - tags: Tags associated with the post.
+  - updated_at: Last updated timestamp for the post.
+  - setPosts: Function to update the list of posts.
+
+  Features:
+  - Allows the post owner to edit or delete the post (`handleEdit`, `handleDelete`).
+  - Handles like and unlike actions, updating the state dynamically (`handleLike`, `handleUnlike`).
+  - Includes a feedback cue (`UserFeedbackCue`) to notify users when a post is being deleted.
+  - Displays avatar, post title, content, tags, likes, and comments count.
+  - Provides responsive interactivity with buttons for likes, comments, and user navigation.
+  - Styled with `Card` and Bootstrap components, with animations via `CSSTransition`.
+*/
 
 const Post = ({
   id,

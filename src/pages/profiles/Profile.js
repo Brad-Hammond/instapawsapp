@@ -8,6 +8,23 @@ import btnStyles from "../../styles/CommentCreateEditForm.module.css";
 import styles from "../../styles/Profile.module.css";
 import { AiOutlineUserAdd, AiOutlineUserDelete } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
+/*
+  Profile Component
+  ------------------
+  - Displays a user profile snippet with an avatar, username, and follow/unfollow functionality.
+
+  Props:
+  - profile: The profile data, including `id`, `following_id`, `image`, and `owner`.
+  - imageSize: Size of the profile avatar (default is 40).
+
+  Features:
+  - Links the avatar and username to the user's profile page.
+  - Shows follow/unfollow buttons for logged-in users who are not the profile owner.
+    1. Follow button triggers `handleFollow` to add a follow relationship.
+    2. Unfollow button triggers `handleUnfollow` to remove the relationship.
+  - Uses `useCurrentUser` to identify the current user's ownership of the profile.
+  - Styled with custom button styles (`btnStyles.CommentButton`, `styles.FollowButton`, and `styles.UnfollowButton`) and layout classes.
+*/
 
 const Profile = ({ profile, imageSize = 40 }) => {
   const { id, following_id, image, owner } = profile;

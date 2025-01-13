@@ -16,6 +16,26 @@ import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import PopularProfiles from "../profiles/PopularProfiles";
+/*
+  PostPage Component
+  -------------------
+  - Displays a detailed view of a single post along with its comments.
+
+  Features:
+  - Fetches post and comments data using `axiosReq` when the component mounts.
+  - Manages state for the post (`post`) and its comments (`comments`).
+  - Allows logged-in users to:
+    1. Create a new comment via `CommentCreateForm`.
+    2. Interact with comments (edit, delete) using the `Comment` component.
+  - Implements infinite scroll for loading additional comments dynamically.
+  - Includes fallback messages for when no comments are available.
+  - Utilizes responsive layout with three columns:
+    1. Toolbar and popular profiles on the left.
+    2. Main post content and comments in the center.
+    3. Additional widgets or space on the right (if needed).
+  - Styled with `appStyles.Content` and other custom classes.
+  - Implements smooth fade-in animation with `CSSTransition`.
+*/
 
 function PostPage() {
   const { id } = useParams();

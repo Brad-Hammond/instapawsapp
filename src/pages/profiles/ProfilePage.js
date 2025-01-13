@@ -22,6 +22,26 @@ import Asset from "../../components/Asset";
 import PopularProfiles from "./PopularProfiles";
 import Toolbar from "../../components/Toolbar";
 import Post from "../posts/Post";
+/*
+  ProfilePage Component
+  ----------------------
+  - Displays detailed information about a user's profile, including their bio, social stats, and posts.
+
+  Features:
+  - Fetches profile and post data using `axiosReq` and updates context/state on mount.
+  - Displays:
+    1. Profile avatar, owner name, bio, and social stats (posts, followers, following).
+    2. User's posts with infinite scroll for seamless loading of additional content.
+  - Allows the current user to:
+    1. Edit their profile using `ProfileEditDropdownMenu`.
+    2. Follow or unfollow other profiles.
+  - Includes responsive layout:
+    1. Left column: Navigation (`Toolbar`) and popular profiles.
+    2. Right column: Profile details and posts.
+  - Shows a spinner (`Asset`) while data is being loaded and fallback messages when no posts are available.
+  - Styled using custom classes (`styles`, `appStyles`) for layout and design.
+  - Implements smooth fade-in animation with `CSSTransition` and a `nodeRef`.
+*/
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -33,7 +53,6 @@ function ProfilePage() {
   const is_owner = currentUser?.username === profile?.owner;
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
-  // Step 1: Create a ref for the CSSTransition node
   const nodeRef = useRef(null);
 
   useEffect(() => {
@@ -139,9 +158,9 @@ function ProfilePage() {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Container ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
+      <Container ref={nodeRef}>
         <Row>
           <Col className="pt-2 p-0 g-0" lg={3}>
             <Toolbar />

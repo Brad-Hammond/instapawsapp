@@ -14,6 +14,22 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
+/*
+  UserPasswordForm Component
+  ---------------------------
+  - Allows users to change their account password.
+
+  Features:
+  - Fetches the current user's profile ID and ensures the form is accessible only to the account owner.
+  - Manages form state (`userData`) for new password fields (`new_password1`, `new_password2`).
+  - Submits the updated password to the API and provides feedback on success or failure.
+  - Displays error messages dynamically for invalid password inputs.
+  - Shows a success message (`UserFeedbackCue`) upon successful password change, with a timed redirect back.
+  - Includes responsive layout with form inputs and styled buttons for submitting or navigating back.
+  - Prevents accidental form submissions or button clicks with `onMouseDown` handlers.
+  - Implements smooth fade-in animation using `CSSTransition` and a `nodeRef`.
+  - Styled using custom classes (`inputStyles`, `btnStyles`, and `alertStyles`) for consistent design.
+*/
 
 const UserPasswordForm = () => {
   const navigate = useNavigate();
@@ -28,7 +44,6 @@ const UserPasswordForm = () => {
   const [showPasswordMsg, setPasswordMsg] = useState();
   const [errors, setErrors] = useState({});
 
-  // Step 1: Create a ref for CSSTransition
   const nodeRef = useRef(null);
 
   const handleChange = (event) => {
@@ -63,9 +78,9 @@ const UserPasswordForm = () => {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Row ref={nodeRef}> {/* Step 3: Attach nodeRef to Row */}
+      <Row ref={nodeRef}>
         <Col className="py-2 mx-auto text-center font-weight-bold" md={10}>
           {showPasswordMsg && (
             <UserFeedbackCue

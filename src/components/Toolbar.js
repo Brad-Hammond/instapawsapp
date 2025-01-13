@@ -5,6 +5,17 @@ import { RiHeartsFill } from "react-icons/ri";
 import styles from "../styles/Toolbar.module.css";
 import Container from "react-bootstrap/Container";
 import ScrollToTopButton from "./ScrollToTopButton";
+/*
+  Toolbar Component
+  ------------------
+  - Provides navigation links for the main sections of the application: My Feed, My Hearts, and Create Post.
+
+  Features:
+  - Highlights the active path using `useLocation` to match the current `pathname` with custom styles.
+  - Includes icons for each link (using Material Design and Remix Icon libraries) for better visual representation.
+  - Integrates the `ScrollToTopButton` component for easy navigation to the top of the page.
+  - Styled using `styles.ToolbarPlacement`, `styles.ToolbarLink`, and `styles.ActivePath` for layout and active link indication.
+*/
 
 const Toolbar = () => {
   const { pathname } = useLocation();

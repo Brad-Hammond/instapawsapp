@@ -14,6 +14,25 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+/*
+  PostEditForm Component
+  -----------------------
+  - Allows users to edit an existing post, including its title, tags, content, and image.
+
+  Features:
+  - Fetches the post data on mount based on the `id` from the URL.
+  - Checks ownership of the post and navigates away if the current user is not the owner.
+  - Manages form state (`postData`) for title, tags, content, and image.
+  - Handles image previews with a file input and `URL.createObjectURL`.
+  - Submits updated data to the API using `FormData`.
+  - Displays error messages for invalid fields returned from the API.
+  - Implements smooth fade-in animation with `CSSTransition` using a `nodeRef`.
+  - Responsive layout:
+    1. Splits text fields and image input into columns for larger screens.
+    2. Provides a single-column layout for smaller screens.
+  - Includes buttons for saving edits and canceling changes with navigation back on cancel.
+  - Styled using custom classes (`styles`, `formStyles`, `btnStyles`).
+*/
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
@@ -31,7 +50,6 @@ function PostEditForm() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // Step 1: Create a ref for the CSSTransition node
   const nodeRef = useRef(null);
 
   useEffect(() => {
@@ -172,9 +190,9 @@ function PostEditForm() {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Form onSubmit={handleSubmit} ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
+      <Form onSubmit={handleSubmit} ref={nodeRef}>
         <Row>
           <Col md={7} lg={8} className="d-none d-md-block p-0 p-md-2">
             <Container className={appStyles.Content}>{textFields}</Container>

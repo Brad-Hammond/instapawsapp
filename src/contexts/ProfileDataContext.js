@@ -9,6 +9,22 @@ export const SetProfileDataContext = createContext();
 
 export const useProfileData = () => useContext(ProfileDataContext);
 export const useSetProfileData = () => useContext(SetProfileDataContext);
+/*
+  ProfileDataProvider Component
+  ------------------------------
+  - Provides context for managing profile-related data, such as profile pages and popular profiles.
+
+  Props:
+  - children: React components that consume the profile context.
+
+  Features:
+  - Manages `profileData` state, including `profilePage` and `popularProfiles` data.
+  - Implements `handleFollow` and `handleUnfollow` functions to update follow relationships dynamically:
+    1. `handleFollow`: Adds a follow relationship and updates the relevant profile lists.
+    2. `handleUnfollow`: Removes a follow relationship and updates the relevant profile lists.
+  - Fetches popular profiles on mount when a user is logged in using the `useEffect` hook.
+  - Uses React context (`ProfileDataContext` and `SetProfileDataContext`) to provide `profileData`, `setProfileData`, and follow/unfollow handlers globally.
+*/
 
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({

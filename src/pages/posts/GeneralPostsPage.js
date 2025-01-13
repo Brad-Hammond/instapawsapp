@@ -19,6 +19,30 @@ import NoResultsImage from "../../assets/noImageFound.avif";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { fetchMoreData } from "../../utils/utils";
+/*
+  GeneralPostsPage Component
+  ---------------------------
+  - Displays a feed of posts with filtering, search, and infinite scroll functionality.
+
+  Props:
+  - message: Message to display when no results are found.
+  - filter: Optional query string for filtering posts (default is an empty string).
+
+  Features:
+  - Manages posts, search queries, and tag filters using local state.
+  - Fetches posts from the API based on the current filter, search query, and selected tags.
+  - Implements debounced search with `setTimeout` for better performance.
+  - Uses `InfiniteScroll` to dynamically load more posts as the user scrolls.
+  - Displays a search bar and popular profiles in a responsive layout.
+  - Includes a tag filter section for refining search results by specific tags.
+  - Shows a spinner while loading and handles "no results" scenarios gracefully.
+  - Styled using custom classes from `styles` and `appStyles`.
+
+  Additional Components:
+  - `Toolbar`: For navigation and additional actions.
+  - `Post`: For rendering individual post data.
+  - `Asset`: For displaying spinners, error messages, or placeholder images.
+*/
 
 function GeneralPostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });

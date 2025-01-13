@@ -18,6 +18,23 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+/*
+  PostCreateForm Component
+  -------------------------
+  - Allows users to create a new post with a title, tag, content, and an optional image.
+
+  Features:
+  - Manages form state (`postData`) for title, tags, content, and image.
+  - Handles image uploads and previews with a file input and `URL.createObjectURL`.
+  - Submits the form data to the API using `FormData`, including image and text fields.
+  - Displays error messages for invalid fields and validation failures from the API.
+  - Implements smooth fade-in animation using `CSSTransition`.
+  - Provides responsive layout:
+    1. Text fields and image input are split into two columns for larger screens.
+    2. A condensed single-column layout for smaller screens.
+  - Includes buttons for form submission and cancelation, with navigation back on cancel.
+  - Styled using custom classes (`styles`, `formStyles`, `btnStyles`, and `assetStyles`).
+*/
 
 function PostCreateForm() {
   useRedirect("loggedOut");
@@ -34,7 +51,6 @@ function PostCreateForm() {
   const imageInput = useRef(null);
   const navigate = useNavigate();
 
-  // Step 1: Create a ref for the CSSTransition node
   const nodeRef = useRef(null);
 
   const handleChange = (e) => {
@@ -156,9 +172,9 @@ function PostCreateForm() {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Form onSubmit={handleSubmit} ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
+      <Form onSubmit={handleSubmit} ref={nodeRef}>
         <Row>
           <Col md={7} lg={8} className="d-none d-md-block p-0 p-md-2">
             <Container className={appStyles.Content}>{textFields}</Container>

@@ -16,6 +16,24 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 
+/*
+  NavBar Component
+  -----------------
+  - Displays the navigation bar for InstaPaws, with dynamic links based on user authentication.
+
+  Features:
+  - Uses `useCurrentUser` and `useSetCurrentUser` hooks to manage user state.
+  - `handleLogOut`: Logs out the user, clears cookies, and resets user state.
+  - Dynamic navigation:
+    1. Authenticated users: Access profile, log out, and create post options via dropdown and links.
+    2. Unauthenticated users: Access login and signup links.
+  - Includes responsive behavior with Bootstrap's `Navbar` and a toggle button (`useClickOutsideToggle`).
+  - Styled with custom classes from `styles.NavBar`.
+
+  Accessibility:
+  - Includes `aria-labels` for better screen reader support.
+*/
+
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();

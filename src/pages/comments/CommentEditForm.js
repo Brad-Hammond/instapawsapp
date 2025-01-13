@@ -3,6 +3,27 @@ import PropTypes from "prop-types";
 import { axiosRes } from "../../api/axiosDefault";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Form from "react-bootstrap/Form";
+/*
+  CommentEditForm Component
+  --------------------------
+  - Allows users to edit an existing comment.
+
+  Props:
+  - id: The unique identifier of the comment being edited.
+  - comment_info: The initial content of the comment.
+  - setShowEditForm: Function to toggle the visibility of the edit form.
+  - setComments: Function to update the comments list.
+
+  Features:
+  - Manages the form input state with `formContent`, initialized with the current comment content.
+  - Handles form submission:
+    1. Sends the updated comment data to the API.
+    2. Updates the corresponding comment in the comments list safely.
+    3. Closes the edit form on successful submission.
+  - Includes a "Cancel Edit" button to discard changes and hide the form.
+  - Disables the "Update" button when the input is empty or contains only whitespace.
+  - Styled using `styles.CommentEntryForm`, `styles.CancelCommentEditButton`, and `styles.CommentButton`.
+*/
 
 function CommentEditForm({ id, comment_info, setShowEditForm, setComments }) {
   const [formContent, setFormContent] = useState(comment_info);

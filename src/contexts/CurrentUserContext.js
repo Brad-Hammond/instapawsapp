@@ -21,6 +21,23 @@ export const SetCurrentUserContext = createContext();
 
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
+/*
+  CurrentUserProvider Component
+  ------------------------------
+  - Provides context for managing the current user's authentication state across the application.
+
+  Props:
+  - children: React components that will consume the user context.
+
+  Features:
+  - Manages `currentUser` state and updates it upon mounting using the `handleMount` function.
+  - Integrates Axios interceptors:
+    1. Request Interceptor: Refreshes the token or reloads the page if needed.
+    2. Response Interceptor: Handles 401 errors by attempting token refresh or redirecting to login.
+  - Automatically logs out the user if token refresh fails, removing token timestamps and resetting state.
+  - Uses React context (`CurrentUserContext` and `SetCurrentUserContext`) to provide `currentUser` and `setCurrentUser` globally.
+  - Implements `useEffect` and `useMemo` hooks to manage lifecycle events and optimize performance.
+*/
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
