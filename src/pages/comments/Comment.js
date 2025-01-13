@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -9,18 +10,16 @@ import CommentEditForm from "./CommentEditForm";
 import UserFeedbackCue from "../../components/UserFeedbackCue";
 import Card from "react-bootstrap/Card";
 
-const Comment = (props) => {
-  const {
-    profile_id,
-    profile_image,
-    owner,
-    updated_at,
-    comment_info,
-    id,
-    setPost,
-    setComments,
-  } = props;
-
+const Comment = ({
+  profile_id,
+  profile_image,
+  owner,
+  updated_at,
+  comment_info,
+  id,
+  setPost,
+  setComments,
+}) => {
   const currentUser = useCurrentUser();
   const [showEditForm, setShowEditForm] = useState(false);
   const is_owner = currentUser?.username === owner;
@@ -32,25 +31,23 @@ const Comment = (props) => {
     setTimeout(async () => {
       try {
         await axiosRes.delete(`/comments/${id}/`);
-        
-        // Safely update the post's comments_total
+
         setPost((prevPost) => {
           if (!prevPost || !prevPost.results || !prevPost.results[0]) {
             console.error("Post data is missing or invalid.");
             return prevPost;
           }
-  
+
           const updatedPost = {
             ...prevPost.results[0],
             comments_total: Math.max((prevPost.results[0].comments_total || 0) - 1, 0),
           };
-  
+
           return {
             results: [updatedPost],
           };
         });
-  
-        // Safely remove the deleted comment from the comments list
+
         setComments((prevComments) => ({
           ...prevComments,
           results: prevComments?.results?.filter((comment) => comment.id !== id) || [],
@@ -104,6 +101,18 @@ const Comment = (props) => {
       </Card.Body>
     </Card>
   );
+};
+
+// PropTypes validation
+Comment.propTypes = {
+  profile_id: PropTypes.number.isRequired,
+  profile_image: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
+  updated_at: PropTypes.string.isRequired,
+  comment_info: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  setPost: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
 };
 
 export default Comment;

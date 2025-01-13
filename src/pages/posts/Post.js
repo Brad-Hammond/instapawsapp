@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react"; // Added useRef
+import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -36,7 +37,6 @@ const Post = ({
   const navigate = useNavigate();
   const [showPostMsg, setShowPostMsg] = useState(false);
 
-  // Step 1: Create a ref for the CSSTransition node
   const nodeRef = useRef(null);
 
   const handleEdit = () => {
@@ -86,14 +86,8 @@ const Post = ({
   };
 
   return (
-    <CSSTransition
-      in
-      appear
-      timeout={300}
-      classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
-    >
-      <Card ref={nodeRef}> {/* Step 3: Attach ref to the parent DOM node */}
+    <CSSTransition in appear timeout={300} classNames="fade" nodeRef={nodeRef}>
+      <Card ref={nodeRef}>
         {showPostMsg && (
           <UserFeedbackCue
             variant="info"
@@ -133,7 +127,7 @@ const Post = ({
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can't heart this!</Tooltip>}
+                overlay={<Tooltip>You can&apos;t heart this!</Tooltip>}
               >
                 <i>
                   <RiHeartsLine />
@@ -158,6 +152,24 @@ const Post = ({
       </Card>
     </CSSTransition>
   );
+};
+
+// PropTypes validation
+Post.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
+  profile_id: PropTypes.number.isRequired,
+  profile_image: PropTypes.string.isRequired,
+  postPage: PropTypes.bool,
+  likes_total: PropTypes.number.isRequired,
+  like_id: PropTypes.number,
+  comments_total: PropTypes.number.isRequired,
+  tags: PropTypes.string,
+  updated_at: PropTypes.string.isRequired,
+  setPosts: PropTypes.func.isRequired,
 };
 
 export default Post;

@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react"; // Added useRef
+import React, { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -28,7 +29,6 @@ function GeneralPostsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
   const [query, setQuery] = useState("");
 
-  // Step 1: Create a ref for the CSSTransition node
   const nodeRef = useRef(null);
 
   useEffect(() => {
@@ -61,9 +61,9 @@ function GeneralPostsPage({ message, filter = "" }) {
       appear={true}
       timeout={{ enter: 300 }}
       classNames="fade"
-      nodeRef={nodeRef} // Step 2: Pass nodeRef to CSSTransition
+      nodeRef={nodeRef}
     >
-      <Container ref={nodeRef}> {/* Step 3: Attach ref to the DOM node */}
+      <Container ref={nodeRef}>
         <Row>
           <Col className="py-2 p-0 p-lg-2" lg={3}>
             <Toolbar />
@@ -147,70 +147,26 @@ function GeneralPostsPage({ message, filter = "" }) {
               >
                 All Tags
               </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Puppies")}
-              >
-                Puppies
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Training")}
-              >
-                Training
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Health")}
-              >
-                Health
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags} `}
-                onClick={() => setTags("Grooming")}
-              >
-                Grooming
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Adoption")}
-              >
-                Adoption
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Nutrition")}
-              >
-                Nutrition
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Toys")}
-              >
-                Toys
-              </Badge>
-              <Badge
-                variant="primary"
-                pill
-                className={`${styles.Tags}`}
-                onClick={() => setTags("Walks")}
-              >
-                Walks
-              </Badge>
+              {[
+                "Puppies",
+                "Training",
+                "Health",
+                "Grooming",
+                "Adoption",
+                "Nutrition",
+                "Toys",
+                "Walks",
+              ].map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="primary"
+                  pill
+                  className={`${styles.Tags}`}
+                  onClick={() => setTags(tag)}
+                >
+                  {tag}
+                </Badge>
+              ))}
             </Container>
           </Col>
         </Row>
@@ -218,5 +174,11 @@ function GeneralPostsPage({ message, filter = "" }) {
     </CSSTransition>
   );
 }
+
+// PropTypes validation
+GeneralPostsPage.propTypes = {
+  message: PropTypes.string.isRequired,
+  filter: PropTypes.string,
+};
 
 export default GeneralPostsPage;

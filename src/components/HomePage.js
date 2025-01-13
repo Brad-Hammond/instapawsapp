@@ -8,8 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { CSSTransition } from "react-transition-group";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const HomePage = () => {
   const currentUser = useCurrentUser();
@@ -31,7 +30,7 @@ const HomePage = () => {
           <Col>
             <h1 className={styles.HomeTitle}>Welcome to InstaPaws</h1>
             <p className={`${styles.HomeDescription} lead`}>
-              Join our community and share your dog's journey.
+              Join our community and share your dog&apos;s journey.
             </p>
             {!currentUser && (
               <p>
@@ -70,7 +69,7 @@ const HomePage = () => {
               <div className="p-4">
                 <h2 className="text-center">Share Photos!</h2>
                 <p className="mt-4">
-                Share photos of your 4-legged friends with the community!
+                  Share photos of your 4-legged friends with the community!
                 </p>
               </div>
             </Col>
@@ -80,7 +79,7 @@ const HomePage = () => {
               >
                 <h2 className="text-center">Like and Comment!</h2>
                 <p className="m-3 mt-4">
-                  Like and comment on photos of other fury friends!
+                  Like and comment on photos of other furry friends!
                 </p>
               </div>
             </Col>

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
@@ -8,8 +9,7 @@ import styles from "../../styles/Profile.module.css";
 import { AiOutlineUserAdd, AiOutlineUserDelete } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 
-const Profile = (props) => {
-  const { profile, imageSize = 40 } = props;
+const Profile = ({ profile, imageSize = 40 }) => {
   const { id, following_id, image, owner } = profile;
 
   const currentUser = useCurrentUser();
@@ -48,6 +48,17 @@ const Profile = (props) => {
       </div>
     </div>
   );
+};
+
+// PropTypes validation
+Profile.propTypes = {
+  profile: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    following_id: PropTypes.number,
+    image: PropTypes.string.isRequired,
+    owner: PropTypes.string.isRequired,
+  }).isRequired,
+  imageSize: PropTypes.number,
 };
 
 export default Profile;

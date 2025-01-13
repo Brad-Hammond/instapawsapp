@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { axiosRes } from "../../api/axiosDefault";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Form from "react-bootstrap/Form";
 
-function CommentEditForm(props) {
-  const { id, comment_info, setShowEditForm, setComments } = props;
+function CommentEditForm({ id, comment_info, setShowEditForm, setComments }) {
   const [formContent, setFormContent] = useState(comment_info);
 
   const handleChange = (event) => {
@@ -56,7 +56,7 @@ function CommentEditForm(props) {
         </button>
         <button
           className={styles.CommentButton}
-          disabled={!comment_info.trim()}
+          disabled={!formContent.trim()}
           type="submit"
         >
           Update
@@ -65,5 +65,13 @@ function CommentEditForm(props) {
     </Form>
   );
 }
+
+// PropTypes validation
+CommentEditForm.propTypes = {
+  id: PropTypes.number.isRequired,
+  comment_info: PropTypes.string.isRequired,
+  setShowEditForm: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
+};
 
 export default CommentEditForm;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefault";
 import styles from "../../styles/CommentCreateEditForm.module.css";
@@ -7,8 +8,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Avatar from "../../components/Avatar";
 
-function CommentCreateForm(props) {
-  const { profileImage, profile_id, post, setPost, setComments } = props;
+function CommentCreateForm({ profileImage, profile_id, post, setPost, setComments }) {
   const [comment_info, setCommentInfo] = useState("");
 
   const handleChange = (e) => {
@@ -84,5 +84,14 @@ function CommentCreateForm(props) {
     </Form>
   );
 }
+
+// PropTypes validation
+CommentCreateForm.propTypes = {
+  profileImage: PropTypes.string.isRequired,
+  profile_id: PropTypes.number.isRequired,
+  post: PropTypes.number.isRequired,
+  setPost: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
+};
 
 export default CommentCreateForm;

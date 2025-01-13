@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { TbGridDots } from "react-icons/tb";
@@ -18,6 +19,10 @@ const DropdownSelect = React.forwardRef(({ onClick }, ref) => (
 ));
 
 DropdownSelect.displayName = "DropdownSelect";
+
+DropdownSelect.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export const DropdownMenu = ({ handleEdit, handleDelete }) => (
   <Dropdown className={styles.Dropdown} drop="right">
@@ -42,6 +47,11 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => (
     </Dropdown.Menu>
   </Dropdown>
 );
+
+DropdownMenu.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+};
 
 export function ProfileEditDropdownMenu({ id }) {
   const navigate = useNavigate();
@@ -70,3 +80,7 @@ export function ProfileEditDropdownMenu({ id }) {
     </Dropdown>
   );
 }
+
+ProfileEditDropdownMenu.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
