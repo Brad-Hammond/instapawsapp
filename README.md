@@ -675,7 +675,7 @@ I have used ESLint to validate my JSX code.
 - I managed to fix the majarity of the errors, however there were 6 remaining which I did not know how to fix.
 - You can see these in the below image:
 
-<img src="docs/cssTesting/Toolbar.module.jpg" alt="ESLing errors"> 
+<img src="docs/testing/ESLintTest.jpg" alt="ESLing errors"> 
 
 ### Lighthouse Report 
 
